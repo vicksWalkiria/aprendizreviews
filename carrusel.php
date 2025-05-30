@@ -3,7 +3,7 @@
 Plugin Name: Aprendiz Reviews
 Plugin URI: https://aprendizdeseo.top/plugin-reviews
 Description: Plugin de carrusel de reseñas desarrollado por Aprendiz de SEO. Permite añadir, validar y mostrar reseñas con avatar y shortcode.
-Version: 1.1
+Version: 1.2
 Author: Aprendiz de SEO
 Author URI: https://aprendizdeseo.top
 */
@@ -151,6 +151,10 @@ add_action('wp_enqueue_scripts', function () {
     // Script Swiper
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], null, true);
 
+    // Obtener el valor de scroll_delay en milisegundos
+    $delay_seconds = intval(get_option('cr_scroll_delay', 3));
+    $delay_ms = $delay_seconds * 1000;
+
     wp_add_inline_style('swiper-css', '
         .reviews-swiper.swiper {
             width: 100%;
@@ -208,7 +212,7 @@ add_action('wp_enqueue_scripts', function () {
                 spaceBetween: 20,
                 loop: true,
                 autoplay: {
-                    delay: 3000,
+                    delay: $delay_ms,
                     disableOnInteraction: false,
                 },
                 grabCursor: true,
@@ -328,11 +332,14 @@ function cr_ajustes_resenas() {
     if ($_POST) {
         update_option('cr_schema_type', sanitize_text_field($_POST['schema_type']));
         update_option('cr_schema_name', sanitize_text_field($_POST['schema_name']));
+        update_option('cr_scroll_delay', intval($_POST['scroll_delay']));
         echo '<div class="updated"><p>Ajustes guardados.</p></div>';
     }
 
     $type = get_option('cr_schema_type', 'Product');
     $name = get_option('cr_schema_name', '');
+    $scroll_delay = get_option('cr_scroll_delay', 3); // valor por defecto: 3 segundos
+
 
     ?>
     <div class="wrap">
@@ -352,6 +359,12 @@ function cr_ajustes_resenas() {
                 <tr>
                     <th scope="row">Nombre del producto/servicio/negocio</th>
                     <td><input type="text" name="schema_name" value="<?= esc_attr($name) ?>" style="width: 300px;"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Segundos entre scrolls</th>
+                    <td>
+                        <input type="number" name="scroll_delay" value="<?= esc_attr($scroll_delay) ?>" min="1" step="1"> segundos
+                    </td>
                 </tr>
             </table>
             <?php submit_button('Guardar ajustes'); ?>
