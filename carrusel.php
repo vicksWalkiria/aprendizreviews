@@ -38,42 +38,83 @@ add_action('admin_menu', function () {
 
 // Mostrar formulario
 function cr_formulario_admin() {
+    global $wpdb;
+
+    $id_editar = isset($_GET['editar_id']) ? intval($_GET['editar_id']) : 0;
+    $tabla = $wpdb->prefix . 'reseñas';
+    $resena_actual = $id_editar ? $wpdb->get_row("SELECT * FROM $tabla WHERE id = $id_editar") : null;
+
+    if ($_POST) {
+        $fecha_input = sanitize_text_field($_POST['fecha']);
+        $fecha_final = date('Y-m-d H:i:s', strtotime($fecha_input . ' ' . date('H:i:s')));
+
+        $data = [
+            'nombre' => sanitize_text_field($_POST['nombre']),
+            'valoracion' => intval($_POST['valoracion']),
+            'texto' => sanitize_textarea_field($_POST['texto']),
+            'avatar_url' => esc_url_raw($_POST['avatar_url']),
+            'validado' => 1,
+            'fecha' => $fecha_final
+        ];
+
+        if (!empty($_POST['editar_id'])) {
+            $wpdb->update($tabla, $data, ['id' => intval($_POST['editar_id'])]);
+            echo '<div class="updated"><p>Reseña actualizada.</p></div>';
+        } else {
+            $wpdb->insert($tabla, $data);
+            echo '<div class="updated"><p>Reseña guardada.</p></div>';
+        }
+
+        // Refrescar datos tras guardar
+        if (!empty($_POST['editar_id'])) {
+            $id_editar = intval($_POST['editar_id']);
+            $resena_actual = $wpdb->get_row("SELECT * FROM $tabla WHERE id = $id_editar");
+        }
+    }
     ?>
+
     <div class="wrap">
-        <h1>Añadir Reseña</h1>
+        <h1><?= $id_editar ? 'Editar Reseña' : 'Añadir Reseña' ?></h1>
         <form method="post">
+            <input type="hidden" name="editar_id" value="<?= esc_attr($id_editar) ?>">
             <table class="form-table">
-                <tr><th>Nombre</th><td><input type="text" name="nombre" required></td></tr>
-                <tr><th>Valoración (1 a 5)</th><td><input type="number" name="valoracion" min="1" max="5" required></td></tr>
-                <tr><th>Texto</th><td><textarea name="texto" rows="4" required></textarea></td></tr>
                 <tr>
-                <th>Avatar</th>
+                    <th>Nombre</th>
+                    <td><input type="text" name="nombre" value="<?= esc_attr($resena_actual->nombre ?? '') ?>" required></td>
+                </tr>
+                <tr>
+                    <th>Valoración (1 a 5)</th>
+                    <td><input type="number" name="valoracion" min="1" max="5" value="<?= esc_attr($resena_actual->valoracion ?? 5) ?>" required></td>
+                </tr>
+                <tr>
+                    <th>Texto</th>
+                    <td><textarea name="texto" rows="4" required><?= esc_textarea($resena_actual->texto ?? '') ?></textarea></td>
+                </tr>
+                <tr>
+                    <th>Fecha de reseña</th>
                     <td>
-                        <input type="text" id="avatar_url" name="avatar_url" value="" style="width:60%" readonly>
+                        <input type="date" name="fecha" value="<?= esc_attr(isset($resena_actual->fecha) ? date('Y-m-d', strtotime($resena_actual->fecha)) : date('Y-m-d')) ?>" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Avatar</th>
+                    <td>
+                        <input type="text" id="avatar_url" name="avatar_url" value="<?= esc_attr($resena_actual->avatar_url ?? '') ?>" style="width:60%" readonly>
                         <input type="button" id="upload_avatar_button" class="button" value="Elegir imagen">
-                        <div id="avatar_preview" style="margin-top:10px;"></div>
+                        <div id="avatar_preview" style="margin-top:10px;">
+                            <?php if (!empty($resena_actual->avatar_url)): ?>
+                                <img src="<?= esc_url($resena_actual->avatar_url) ?>" style="max-width:80px; border-radius:50%;">
+                            <?php endif; ?>
+                        </div>
                     </td>
                 </tr>
             </table>
-            <?php submit_button('Guardar reseña'); ?>
+            <?php submit_button($id_editar ? 'Actualizar reseña' : 'Guardar reseña'); ?>
         </form>
     </div>
     <?php
-    if ($_POST) {
-        global $wpdb;
-        $wpdb->insert(
-            $wpdb->prefix . 'reseñas',
-            [
-                'nombre' => sanitize_text_field($_POST['nombre']),
-                'valoracion' => intval($_POST['valoracion']),
-                'texto' => sanitize_textarea_field($_POST['texto']),
-                'avatar_url' => esc_url_raw($_POST['avatar_url']),
-                'validado' => 1
-            ]
-        );
-        echo '<div class="updated"><p>Reseña guardada.</p></div>';
-    }
 }
+
 
 add_shortcode('reviews', 'cr_mostrar_reviews');
 function cr_mostrar_reviews() {
@@ -138,6 +179,16 @@ function cr_mostrar_reviews() {
         ],
         "review" => $review_ld
     ];
+
+    if ($type === 'LocalBusiness') {
+        $direccion = get_option('cr_schema_address', '');
+        if ($direccion) {
+            $schema['address'] = [
+                "@type" => "PostalAddress",
+                "streetAddress" => $direccion
+            ];
+        }
+    }
 
     echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>';
     return ob_get_clean();
@@ -263,7 +314,7 @@ function cr_listar_resenas() {
                         <th>Avatar</th>
                         <th>Fecha</th>
                         <th>¿Válida?</th>
-                        <th>Eliminar</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -288,6 +339,7 @@ function cr_listar_resenas() {
                                 </label>
                             </td>
                             <td>
+                                <a href="<?= admin_url('admin.php?page=añadir-resena&editar_id=' . $r->id) ?>" class="button">✏️ Editar</a>
                                 <button type="submit" name="eliminar_id" value="<?= $r->id ?>" class="button button-danger" onclick="return confirm('¿Seguro que quieres eliminar esta reseña?');">Eliminar</button>
                             </td>
                         </tr>
@@ -333,6 +385,8 @@ function cr_ajustes_resenas() {
         update_option('cr_schema_type', sanitize_text_field($_POST['schema_type']));
         update_option('cr_schema_name', sanitize_text_field($_POST['schema_name']));
         update_option('cr_scroll_delay', intval($_POST['scroll_delay']));
+        update_option('cr_schema_address', sanitize_text_field($_POST['schema_address']));
+
         echo '<div class="updated"><p>Ajustes guardados.</p></div>';
     }
 
@@ -352,12 +406,19 @@ function cr_ajustes_resenas() {
                         <select name="schema_type">
                             <option value="Product" <?= selected($type, 'Product') ?>>Producto</option>
                             <option value="LocalBusiness" <?= selected($type, 'LocalBusiness') ?>>Negocio local</option>
-                            <option value="Service" <?= selected($type, 'Service') ?>>Servicio</option>
                         </select>
                     </td>
                 </tr>
+                <tr id="direccion_row">
+                    <th scope="row">Dirección del negocio</th>
+                    <td>
+                        <input type="text" name="schema_address" value="<?= esc_attr(get_option('cr_schema_address', '')) ?>" style="width: 300px;">
+                        <p class="description">Solo se usará si el tipo es "Negocio local".</p>
+                    </td>
+                </tr>
+
                 <tr>
-                    <th scope="row">Nombre del producto/servicio/negocio</th>
+                    <th scope="row">Nombre del producto/negocio</th>
                     <td><input type="text" name="schema_name" value="<?= esc_attr($name) ?>" style="width: 300px;"></td>
                 </tr>
                 <tr>
@@ -370,6 +431,25 @@ function cr_ajustes_resenas() {
             <?php submit_button('Guardar ajustes'); ?>
         </form>
     </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tipoSelect = document.querySelector('select[name="schema_type"]');
+        const filaDireccion = document.getElementById('direccion_row');
+
+        function toggleDireccion() {
+            if (tipoSelect.value === 'LocalBusiness') {
+                filaDireccion.style.display = '';
+            } else {
+                filaDireccion.style.display = 'none';
+            }
+        }
+
+        tipoSelect.addEventListener('change', toggleDireccion);
+        toggleDireccion();
+    });
+    </script>
+
     <?php
 }
 
