@@ -3,7 +3,7 @@
 Plugin Name: Aprendiz Reviews
 Plugin URI: https://aprendizdeseo.top/plugin-reviews
 Description: Plugin de carrusel de reseñas desarrollado por Aprendiz de SEO. Permite añadir, validar y mostrar reseñas con avatar y shortcode.
-Version: 1.3
+Version: 1.4
 Author: Aprendiz de SEO
 Author URI: https://aprendizdeseo.top
 */
@@ -985,3 +985,334 @@ function cr_dashboard_admin() {
     echo '</div></div></div>';
 }
 
+// Shortcode para formulario frontend de reseñas
+add_shortcode('reviews_form', 'cr_formulario_frontend');
+
+function cr_formulario_frontend($atts) {
+    global $wpdb;
+    
+    $atts = shortcode_atts([
+        'titulo' => '📝 Comparte tu experiencia'
+    ], $atts);
+    
+    // Obtener productos activos
+    $tabla_productos = $wpdb->prefix . 'productos_servicios';
+    $productos = $wpdb->get_results("SELECT id, nombre FROM $tabla_productos WHERE activo = 1 ORDER BY nombre");
+    
+    ob_start();
+    ?>
+    
+    <div id="reviews-frontend-form" class="reviews-form-container">
+        <h3><?= esc_html($atts['titulo']) ?></h3>
+        
+        <form id="review-form-frontend" method="post" style="display: block;">
+            <div class="form-group">
+                <label for="rf_nombre">Nombre *</label>
+                <input type="text" id="rf_nombre" name="nombre" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="rf_valoracion">Valoración *</label>
+                <div class="rating-stars" id="rating-container">
+                    <?php for($i = 1; $i <= 5; $i++): ?>
+                        <span class="star" data-rating="<?= $i ?>">★</span>
+                    <?php endfor; ?>
+                </div>
+                <input type="hidden" id="rf_valoracion" name="valoracion" value="5" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="rf_producto">Producto/Servicio *</label>
+                <select id="rf_producto" name="producto_servicio_id" required>
+                    <option value="">Selecciona una opción</option>
+                    <?php foreach($productos as $producto): ?>
+                        <option value="<?= $producto->id ?>"><?= esc_html($producto->nombre) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="rf_texto">Cuéntanos tu experiencia *</label>
+                <textarea id="rf_texto" name="texto" rows="4" required placeholder="Comparte los detalles de tu experiencia..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" id="submit-review">Enviar Reseña</button>
+            </div>
+        </form>
+        
+        <!-- Mensaje de agradecimiento (oculto inicialmente) -->
+        <div id="thank-you-message" style="display: none;">
+            <h3>¡Gracias por tu reseña! 🙏</h3>
+            <p>Tu opinión es muy importante para nosotros. Hemos recibido tu reseña y la revisaremos pronto.</p>
+        </div>
+        
+        <div id="form-response"></div>
+    </div>
+    
+    <?php
+    return ob_get_clean();
+}
+
+// Procesar envío del formulario via AJAX
+add_action('wp_ajax_submit_review_frontend', 'cr_procesar_review_frontend');
+add_action('wp_ajax_nopriv_submit_review_frontend', 'cr_procesar_review_frontend');
+
+function cr_procesar_review_frontend() {
+    global $wpdb;
+    
+    // Verificar nonce de seguridad
+    if (!wp_verify_nonce($_POST['nonce'], 'review_form_nonce')) {
+        wp_send_json_error('Error de seguridad');
+        return;
+    }
+    
+    // Validar datos
+    $nombre = sanitize_text_field($_POST['nombre']);
+    $valoracion = intval($_POST['valoracion']);
+    $producto_id = intval($_POST['producto_servicio_id']);
+    $texto = sanitize_textarea_field($_POST['texto']);
+    
+    if (empty($nombre) || empty($texto) || $valoracion < 1 || $valoracion > 5 || $producto_id < 1) {
+        wp_send_json_error('Por favor completa todos los campos correctamente');
+        return;
+    }
+    
+    // Obtener info del producto
+    $tabla_productos = $wpdb->prefix . 'productos_servicios';
+    $producto = $wpdb->get_row($wpdb->prepare(
+        "SELECT nombre FROM $tabla_productos WHERE id = %d AND activo = 1",
+        $producto_id
+    ));
+    
+    if (!$producto) {
+        wp_send_json_error('Producto no válido');
+        return;
+    }
+    
+    // Guardar en base de datos (sin validar automáticamente)
+    $tabla_resenas = $wpdb->prefix . 'reseñas';
+    $resultado = $wpdb->insert($tabla_resenas, [
+        'nombre' => $nombre,
+        'valoracion' => $valoracion,
+        'texto' => $texto,
+        'producto_servicio_id' => $producto_id,
+        'validado' => 0, // Sin validar hasta que tú lo apruebes
+        'fecha' => current_time('mysql')
+    ]);
+    
+    if (!$resultado) {
+        wp_send_json_error('Error al guardar la reseña');
+        return;
+    }
+    
+    // Enviar email de notificación
+    $subject = '📝 Nueva reseña recibida - ' . get_bloginfo('name');
+    $estrellas = str_repeat('⭐', $valoracion);
+    
+    $message = "
+    <h2>Nueva reseña recibida</h2>
+    <hr>
+    <strong>Nombre:</strong> {$nombre}<br>
+    <strong>Producto/Servicio:</strong> {$producto->nombre}<br>
+    <strong>Valoración:</strong> {$estrellas} ({$valoracion}/5)<br>
+    <strong>Fecha:</strong> " . date('d/m/Y H:i') . "<br>
+    <br>
+    <strong>Comentario:</strong><br>
+    <p style='background:#f9f9f9;padding:15px;border-left:4px solid #0073aa;'>{$texto}</p>
+    <br>
+    <a href='" . admin_url('admin.php?page=gestionar-resenas') . "' style='background:#0073aa;color:white;padding:10px 15px;text-decoration:none;border-radius:3px;'>Ver en el panel de administración</a>
+    ";
+    
+    $headers = [
+        'Content-Type: text/html; charset=UTF-8',
+        'From: ' . get_bloginfo('name') . ' <no-reply@' . $_SERVER['HTTP_HOST'] . '>'
+    ];
+    
+    $email_enviado = wp_mail('vicks630@gmail.com', $subject, $message, $headers);
+    
+    if ($email_enviado) {
+        wp_send_json_success('Reseña enviada correctamente. ¡Gracias!');
+    } else {
+        wp_send_json_success('Reseña guardada (pero hubo un problema enviando el email de notificación)');
+    }
+}
+
+// Encolar estilos y scripts para el formulario frontend
+add_action('wp_enqueue_scripts', 'cr_encolar_scripts_frontend');
+
+function cr_encolar_scripts_frontend() {
+    // Solo cargar si la página contiene el shortcode
+    global $post;
+    if (!is_object($post) || !has_shortcode($post->post_content, 'reviews_form')) {
+        return;
+    }
+    
+    wp_enqueue_script('jquery');
+    
+    wp_add_inline_style('wp-block-library', '
+        .reviews-form-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .reviews-form-container h3 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .reviews-form-container .form-group {
+            margin-bottom: 15px;
+        }
+        .reviews-form-container label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .reviews-form-container input,
+        .reviews-form-container textarea,
+        .reviews-form-container select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .reviews-form-container .rating-stars {
+            display: flex;
+            gap: 5px;
+            margin: 10px 0;
+        }
+        .reviews-form-container .star {
+            font-size: 24px;
+            color: #ddd;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.2s;
+        }
+        .reviews-form-container .star:hover,
+        .reviews-form-container .star.active {
+            color: #ffc107;
+        }
+        .reviews-form-container button {
+            background: #0073aa;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        .reviews-form-container button:hover {
+            background: #005a87;
+        }
+        .reviews-form-container button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #thank-you-message {
+            text-align: center;
+            padding: 30px;
+            background: #f0f8ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            color: #0073aa;
+        }
+        #form-response {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        #form-response.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        #form-response.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+    ');
+    
+    wp_add_inline_script('jquery', '
+        jQuery(document).ready(function($) {
+            // Sistema de estrellas interactivo
+            $(".star").on("click", function() {
+                var rating = $(this).data("rating");
+                $("#rf_valoracion").val(rating);
+                
+                // Actualizar visualización
+                $(".star").removeClass("active");
+                for(var i = 1; i <= rating; i++) {
+                    $(".star[data-rating=" + i + "]").addClass("active");
+                }
+            });
+            
+            // Hover effect para estrellas
+            $(".star").hover(
+                function() {
+                    var rating = $(this).data("rating");
+                    $(".star").removeClass("active");
+                    for(var i = 1; i <= rating; i++) {
+                        $(".star[data-rating=" + i + "]").addClass("active");
+                    }
+                },
+                function() {
+                    var currentRating = $("#rf_valoracion").val();
+                    $(".star").removeClass("active");
+                    for(var i = 1; i <= currentRating; i++) {
+                        $(".star[data-rating=" + i + "]").addClass("active");
+                    }
+                }
+            );
+            
+            // Envío del formulario via AJAX
+            $("#review-form-frontend").on("submit", function(e) {
+                e.preventDefault();
+                
+                var formData = {
+                    action: "submit_review_frontend",
+                    nombre: $("#rf_nombre").val(),
+                    valoracion: $("#rf_valoracion").val(),
+                    producto_servicio_id: $("#rf_producto").val(),
+                    texto: $("#rf_texto").val(),
+                    nonce: "' . wp_create_nonce('review_form_nonce') . '"
+                };
+                
+                $("#submit-review").prop("disabled", true).text("Enviando...");
+                $("#form-response").removeClass("success error").text("");
+                
+                $.post("' . admin_url('admin-ajax.php') . '", formData)
+                    .done(function(response) {
+                        if (response.success) {
+                            // Ocultar formulario y mostrar agradecimiento
+                            $("#review-form-frontend").fadeOut(300, function() {
+                                $("#thank-you-message").fadeIn(300);
+                            });
+                        } else {
+                            $("#form-response").addClass("error").text(response.data || "Error al enviar la reseña");
+                            $("#submit-review").prop("disabled", false).text("Enviar Reseña");
+                        }
+                    })
+                    .fail(function() {
+                        $("#form-response").addClass("error").text("Error de conexión. Inténtalo de nuevo.");
+                        $("#submit-review").prop("disabled", false).text("Enviar Reseña");
+                    });
+            });
+            
+            // Inicializar con 5 estrellas por defecto
+            for(var i = 1; i <= 5; i++) {
+                $(".star[data-rating=" + i + "]").addClass("active");
+            }
+        });
+    ');
+}

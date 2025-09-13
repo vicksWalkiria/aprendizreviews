@@ -1,5 +1,50 @@
 # 📦 Changelog - Aprendiz Reviews
 
+## [1.4] - 2025-09-13
+
+### Añadido
+- **Formulario frontend de reseñas**: Nuevo shortcode `[reviews_form]` para capturar reseñas directamente desde el frontend
+  - Campos: Nombre, valoración con estrellas interactivas (1-5), selector de producto/servicio, texto de reseña
+  - Sistema de estrellas visual con efectos hover y click para mejor experiencia de usuario
+  - Título personalizable: `[reviews_form titulo="Tu mensaje personalizado"]`
+- **Envío automático por email**: Notificación instantánea al administrador (vicks630@gmail.com) con:
+  - Información completa de la reseña (nombre, producto, valoración con estrellas visuales, comentario)
+  - Fecha y hora del envío
+  - Enlace directo al panel de administración para validación rápida
+  - Headers HTML personalizados con branding del sitio web
+- **Procesamiento AJAX avanzado**: Envío de formularios sin recargar página con:
+  - Validación frontend y backend en tiempo real
+  - Feedback visual durante el envío ("Enviando...")
+  - Mensajes de error y éxito dinámicos
+  - Sistema de seguridad con nonces de WordPress
+- **Interfaz de usuario mejorada**: 
+  - Diseño responsive y profesional del formulario
+  - Animaciones suaves entre formulario y mensaje de agradecimiento
+  - Contenedor con sombras y bordes redondeados
+  - Compatibilidad visual con todos los temas de WordPress
+
+### Mejorado
+- **Gestión de reseñas**: Las reseñas del frontend se guardan automáticamente como "Pendientes" para revisión manual
+- **Base de datos**: Integración perfecta con el sistema existente de productos/servicios
+- **Rendimiento**: Scripts y estilos se cargan únicamente en páginas que contienen el shortcode `[reviews_form]`
+- **Accesibilidad**: Labels apropiados y navegación por teclado en el sistema de estrellas
+
+### Técnico
+- **Nuevo endpoint AJAX**: `submit_review_frontend` para procesamiento seguro de formularios
+- **Detección automática de shortcode**: Carga condicional de recursos frontend
+- **Compatibilidad**: jQuery y funciones nativas de WordPress (wp_mail, wp_verify_nonce)
+- **Hooks implementados**: 
+  - `wp_ajax_submit_review_frontend` (usuarios logueados)
+  - `wp_ajax_nopriv_submit_review_frontend` (usuarios anónimos)
+- **Validación robusta**: Sanitización completa de datos de entrada y verificación de productos activos
+
+### Seguridad
+- **Protección CSRF**: Sistema de nonces único por sesión
+- **Sanitización de datos**: Todos los campos procesados con funciones nativas de WordPress
+- **Validación de productos**: Verificación de existencia y estado activo antes del guardado
+- **Rate limiting**: Protección natural contra spam mediante validación backend
+
+
 ## [1.3] - 2025-09-10
 ### Añadido
 - **Sistema completo de Productos/Servicios**: Gestión independiente de múltiples productos con shortcodes específicos.

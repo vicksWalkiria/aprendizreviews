@@ -50,6 +50,38 @@ Ideal para negocios, profesionales y webs que necesiten mostrar testimonios orga
 - Soporte para Product, LocalBusiness, Organization
 - AggregateRating y Reviews integrados correctamente
 
+### **Formulario frontend**
+
+- Nuevo shortcode `[reviews_form]` para capturar reseñas desde el frontend
+- Sistema de estrellas interactivo con efectos hover y click
+- Envío por AJAX sin recargar página
+- Notificación automática por email al administrador
+- Validación frontend y backend en tiempo real
+- Diseño responsive y compatible con todos los temas
+
+#### Uso del shortcode
+
+[reviews_form] -> Formulario básico
+[reviews_form titulo="Déjanos tu opinión"] -> Con título personalizado
+
+#### Características del formulario
+
+- **Campos**: Nombre, valoración (1-5 estrellas), producto/servicio, texto de reseña
+- **Interactividad**: Sistema de estrellas visual con hover effects
+- **Seguridad**: Protección CSRF con nonces de WordPress
+- **UX optimizada**: Animaciones suaves y feedback visual durante envío
+- **Email automático**: Notificación instantánea con detalles completos de la reseña
+- **Gestión**: Las reseñas se guardan como "Pendientes" para revisión manual
+
+#### Campos del email
+
+- Nombre del usuario y producto seleccionado
+- Valoración con estrellas visuales (⭐⭐⭐⭐⭐)
+- Texto completo de la reseña
+- Fecha y hora del envío
+- Enlace directo al panel de administración
+
+
 
 ## ❓ Preguntas frecuentes
 
@@ -86,38 +118,6 @@ La migración es automática. Todas las reseñas existentes se asignan al produc
 - **Schema support**: Product, LocalBusiness, Organization
 - **Compatible con**: Google Rich Results, Schema.org validation
 
-
-## 🚀 Changelog
-
-### [1.3] - 2025-09-10
-
-#### Añadido
-
-- **Sistema multi-producto**: Gestión completa de productos/servicios independientes
-- **Shortcodes dinámicos**: Cada producto genera su shortcode único
-- **Schema JSON-LD optimizado**: Compatible con Google Rich Results
-- **Dashboard profesional**: Estadísticas y listado de shortcodes
-- **Filtros avanzados**: Gestión de reseñas por producto y estado
-- **Migración automática**: Asignación transparente de reseñas existentes
-- **Validación masiva**: Aprobación múltiple de reseñas pendientes
-
-
-#### Corregido
-
-- **Media uploader**: Botón "Elegir imagen" funciona correctamente
-- **Schema validation**: Eliminados errores en Google Structured Data Testing
-- **JavaScript conflicts**: Optimización de carga de dependencias
-- **Database performance**: Índices y relaciones optimizadas
-
-
-### [1.2] - 2025-05-30
-
-#### Añadido
-
-- Opción en ajustes para definir segundos entre scrolls automáticos
-- Campo para seleccionar fecha de reseña al crear una nueva
-- Funcionalidad para editar reseñas existentes desde listado
-- Eliminación de tipo `Service` por incompatibilidad con Google Rich Results
 
 
 ## 💬 Soporte y comunidad
