@@ -42,6 +42,7 @@ class Aprendiz_Reviews {
         require_once APRENDIZ_REVIEWS_PLUGIN_PATH . 'controllers/class-ajax-controller.php';
 
         require_once APRENDIZ_REVIEWS_PLUGIN_PATH . 'controllers/class-import-controller.php';
+        require_once APRENDIZ_REVIEWS_PLUGIN_PATH . 'controllers/class-auto-shortcode-controller.php';
         
         $this->loader = new Aprendiz_Reviews_Loader();
     }
@@ -61,7 +62,7 @@ class Aprendiz_Reviews {
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
         $this->loader->add_action('init', $plugin_public, 'register_shortcodes');
-        
+        $this->loader->add_action('init', 'Aprendiz_Reviews_Auto_Shortcode_Controller', 'init_saved_hooks');
         // AJAX hooks
         $ajax_controller = new Aprendiz_Reviews_Ajax_Controller();
         $this->loader->add_action('wp_ajax_submit_review_frontend', $ajax_controller, 'handle_frontend_review');

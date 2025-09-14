@@ -16,7 +16,7 @@ class Aprendiz_Reviews_Admin {
         $this->product_controller = new Aprendiz_Reviews_Product_Controller();
         $this->review_controller = new Aprendiz_Reviews_Review_Controller();
         $this->import_controller = new Aprendiz_Reviews_Import_Controller();
-
+        $this->auto_shortcode_controller = new Aprendiz_Reviews_Auto_Shortcode_Controller();
     }
     
     public function enqueue_styles($hook) {
@@ -121,6 +121,15 @@ class Aprendiz_Reviews_Admin {
             'manage_options',
             'importar-woocommerce',
             array($this->import_controller, 'display_import_page')
+        );
+
+        add_submenu_page(
+            'aprendiz-reviews',
+            'Insertar Automáticamente',
+            '🎯 Auto-Insertar',
+            'manage_options',
+            'auto-shortcode',
+            array($this->auto_shortcode_controller, 'display_auto_shortcode_page')
         );
 
     }

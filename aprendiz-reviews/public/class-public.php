@@ -16,13 +16,23 @@ class Aprendiz_Reviews_Public {
     public function enqueue_styles() {
         // Solo cargar en páginas que contienen shortcodes
         global $post;
-        if (!is_object($post)) return;
         
-        $has_carousel = has_shortcode($post->post_content, 'reviews_general') || 
-                       $this->has_dynamic_shortcode($post->post_content);
-        $has_form = has_shortcode($post->post_content, 'reviews_form');
+        $should_load_carousel = false;
+        $should_load_form = false;
         
-        if ($has_carousel || $has_form) {
+        // 1. Verificar shortcodes en contenido normal
+        if (is_object($post)) {
+            $should_load_carousel = has_shortcode($post->post_content, 'reviews_general') || 
+                                $this->has_dynamic_shortcode($post->post_content);
+            $should_load_form = has_shortcode($post->post_content, 'reviews_form');
+        }
+        
+        // 2. Verificar si estamos en página de producto WooCommerce con hooks automáticos
+        if (is_product() && !$should_load_carousel) {
+            $should_load_carousel = $this->has_automatic_shortcode_hooks();
+        }
+        
+        if ($should_load_carousel || $should_load_form) {
             // Swiper CSS
             wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
             
@@ -36,31 +46,56 @@ class Aprendiz_Reviews_Public {
             );
             
             // Añadir estilos inline
-            $this->add_inline_styles($has_carousel, $has_form);
+            $this->add_inline_styles($should_load_carousel, $should_load_form);
         }
     }
-    
+
+    private function has_automatic_shortcode_hooks() {
+        // Verificar si hay hooks automáticos guardados para esta página
+        $saved_hooks = get_option('aprendiz_reviews_auto_hooks', array());
+        
+        if (empty($saved_hooks)) {
+            return false;
+        }
+        
+        // Si hay hooks guardados y estamos en una página de producto, cargar estilos
+        return !empty($saved_hooks);
+    }
+
+
+        
     public function enqueue_scripts() {
         global $post;
-        if (!is_object($post)) return;
         
-        $has_carousel = has_shortcode($post->post_content, 'reviews_general') || 
-                       $this->has_dynamic_shortcode($post->post_content);
-        $has_form = has_shortcode($post->post_content, 'reviews_form');
+        $should_load_carousel = false;
+        $should_load_form = false;
         
-        if ($has_carousel || $has_form) {
+        // 1. Verificar shortcodes en contenido normal
+        if (is_object($post)) {
+            $should_load_carousel = has_shortcode($post->post_content, 'reviews_general') || 
+                                $this->has_dynamic_shortcode($post->post_content);
+            $should_load_form = has_shortcode($post->post_content, 'reviews_form');
+        }
+        
+        // 2. Verificar si estamos en página de producto WooCommerce con hooks automáticos  
+        if (is_product() && !$should_load_carousel) {
+            $should_load_carousel = $this->has_automatic_shortcode_hooks();
+        }
+        
+        if ($should_load_carousel || $should_load_form) {
             // Swiper JS
             wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
             
             // jQuery para formulario
-            if ($has_form) {
+            if ($should_load_form) {
                 wp_enqueue_script('jquery');
             }
             
             // Scripts inline
-            $this->add_inline_scripts($has_carousel, $has_form);
+            $this->add_inline_scripts($should_load_carousel, $should_load_form);
         }
     }
+
     
     public function register_shortcodes() {
         // Registrar shortcodes dinámicos
