@@ -15,6 +15,8 @@ class Aprendiz_Reviews_Admin {
         $this->version = $version;
         $this->product_controller = new Aprendiz_Reviews_Product_Controller();
         $this->review_controller = new Aprendiz_Reviews_Review_Controller();
+        $this->import_controller = new Aprendiz_Reviews_Import_Controller();
+
     }
     
     public function enqueue_styles($hook) {
@@ -111,6 +113,16 @@ class Aprendiz_Reviews_Admin {
             'añadir-resena', 
             array($this->review_controller, 'display_form')
         );
+
+        add_submenu_page(
+            'aprendiz-reviews',
+            'Importar de WooCommerce',
+            '🛒 Importar WooCommerce',
+            'manage_options',
+            'importar-woocommerce',
+            array($this->import_controller, 'display_import_page')
+        );
+
     }
     
     public function display_dashboard() {

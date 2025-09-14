@@ -40,6 +40,8 @@ class Aprendiz_Reviews {
         require_once APRENDIZ_REVIEWS_PLUGIN_PATH . 'controllers/class-product-controller.php';
         require_once APRENDIZ_REVIEWS_PLUGIN_PATH . 'controllers/class-review-controller.php';
         require_once APRENDIZ_REVIEWS_PLUGIN_PATH . 'controllers/class-ajax-controller.php';
+
+        require_once APRENDIZ_REVIEWS_PLUGIN_PATH . 'controllers/class-import-controller.php';
         
         $this->loader = new Aprendiz_Reviews_Loader();
     }
