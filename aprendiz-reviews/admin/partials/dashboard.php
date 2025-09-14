@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
             <div class="postbox">
                 <h2><span>📊 Estadísticas</span></h2>
                 <div class="inside">
-                    <p><strong>Productos/Servicios activos:</strong> <?php echo $product_stats['active']; ?></p>
+                    <p><strong>Productos activos:</strong> <?php echo $product_stats['active']; ?></p>
                     <p><strong>Total productos:</strong> <?php echo $product_stats['total']; ?></p>
                     <p><strong>Total reseñas:</strong> <?php echo $review_stats['total']; ?></p>
                     <p><strong>Reseñas validadas:</strong> <?php echo $review_stats['validated']; ?></p>
@@ -51,7 +51,7 @@ if (!defined('ABSPATH')) {
                 <div class="inside">
                     <p>
                         <a href="<?php echo admin_url('admin.php?page=añadir-producto'); ?>" class="button button-primary">
-                            ➕ Crear Producto/Servicio
+                            ➕ Crear Producto
                         </a>
                     </p>
                     <p>

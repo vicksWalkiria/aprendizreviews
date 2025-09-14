@@ -82,7 +82,7 @@ $page_title = $is_edit ? '✏️ Editar Reseña' : '➕ Añadir Reseña';
             
             <tr>
                 <th scope="row">
-                    <label for="producto_servicio_id">Producto/Servicio *</label>
+                    <label for="producto_servicio_id">Producto *</label>
                 </th>
                 <td>
                     <select id="producto_servicio_id" name="producto_servicio_id" required>
@@ -92,7 +92,7 @@ $page_title = $is_edit ? '✏️ Editar Reseña' : '➕ Añadir Reseña';
                             </option>
                         <?php endforeach; ?>
                     </select>
-                    <p class="description">Producto o servicio al que pertenece esta reseña.</p>
+                    <p class="description">Producto al que pertenece esta reseña.</p>
                 </td>
             </tr>
             

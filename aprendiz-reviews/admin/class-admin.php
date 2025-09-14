@@ -87,8 +87,8 @@ class Aprendiz_Reviews_Admin {
         
         add_submenu_page(
             'aprendiz-reviews',
-            'Añadir Producto/Servicio',
-            'Añadir Producto/Servicio', 
+            'Añadir Producto',
+            'Añadir Producto', 
             'manage_options', 
             'añadir-producto', 
             array($this->product_controller, 'display_form')

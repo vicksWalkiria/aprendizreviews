@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 }
 
 $is_edit = !empty($product);
-$page_title = $is_edit ? '✏️ Editar Producto/Servicio' : '➕ Añadir Producto/Servicio';
+$page_title = $is_edit ? '✏️ Editar Producto' : '➕ Añadir Producto';
 ?>
 
 <div class="wrap">
@@ -34,7 +34,7 @@ $page_title = $is_edit ? '✏️ Editar Producto/Servicio' : '➕ Añadir Produc
                            required 
                            style="width: 100%;"
                            placeholder="Ej: Consultoría SEO">
-                    <p class="description">Nombre del producto o servicio que se mostrará en las reseñas.</p>
+                    <p class="description">Nombre del producto que se mostrará en las reseñas.</p>
                 </td>
             </tr>
             
@@ -94,7 +94,7 @@ $page_title = $is_edit ? '✏️ Editar Producto/Servicio' : '➕ Añadir Produc
                               name="descripcion" 
                               rows="3" 
                               style="width: 100%;"
-                              placeholder="Descripción breve del producto o servicio"><?php echo esc_textarea($product->descripcion ?? ''); ?></textarea>
+                              placeholder="Descripción breve del producto"><?php echo esc_textarea($product->descripcion ?? ''); ?></textarea>
                     <p class="description">Descripción que aparecerá en el schema estructurado para SEO.</p>
                 </td>
             </tr>
@@ -110,7 +110,7 @@ $page_title = $is_edit ? '✏️ Editar Producto/Servicio' : '➕ Añadir Produc
                            value="<?php echo esc_attr($product->url ?? ''); ?>" 
                            style="width: 100%;"
                            placeholder="https://ejemplo.com/mi-producto">
-                    <p class="description">URL oficial del producto o servicio (opcional).</p>
+                    <p class="description">URL oficial del producto (opcional).</p>
                 </td>
             </tr>
             

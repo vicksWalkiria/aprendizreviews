@@ -76,7 +76,7 @@ if (!defined('ABSPATH')) {
     
     <?php if (empty($products)): ?>
         <div class="notice notice-info">
-            <p>No hay productos/servicios creados. <a href="<?php echo admin_url('admin.php?page=añadir-producto'); ?>">Crear el primero</a></p>
+            <p>No hay productos creados. <a href="<?php echo admin_url('admin.php?page=añadir-producto'); ?>">Crear el primero</a></p>
         </div>
     <?php endif; ?>
 </div>

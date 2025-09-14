@@ -24,7 +24,7 @@ if (!defined('ABSPATH')) {
         </div>
         
         <div class="form-group">
-            <label for="rf_producto">Producto/Servicio *</label>
+            <label for="rf_producto">Producto *</label>
             <select id="rf_producto" name="producto_servicio_id" required>
                 <option value="">Selecciona una opción</option>
                 <?php foreach($products as $producto): ?>
