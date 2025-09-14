@@ -1,5 +1,51 @@
 # 📦 Changelog - Aprendiz Reviews
 
+## [1.5] - 2025-09-14
+
+### 🏗️ Arquitectura Completamente Reorganizada
+
+**Reestructuración completa del plugin siguiendo patrones MVC y mejores prácticas de WordPress:**
+
+#### Añadido
+- **Estructura MVC profesional**: Separación completa entre Modelos, Vistas y Controladores
+  - `models/`: Gestión de datos y operaciones de base de datos (Product, Review, Database)
+  - `controllers/`: Lógica de negocio (Product Controller, Review Controller, AJAX Controller)  
+  - `admin/partials/`: Vistas del panel de administración organizadas por funcionalidad
+  - `public/partials/`: Vistas del frontend separadas por contexto
+  - `templates/`: Templates reutilizables para shortcodes y emails
+
+- **Sistema de carga inteligente**: 
+  - Clase `Loader` centralizada para gestión de hooks y filtros
+  - Carga condicional de assets CSS/JS solo en páginas que los necesitan
+  - Detección automática de shortcodes para optimizar rendimiento
+
+- **Clases especializadas**:
+  - `Aprendiz_Reviews_Activator`: Instalación controlada con creación de tablas y migración
+  - `Aprendiz_Reviews_Deactivator`: Limpieza temporal al desactivar plugin
+  - `Aprendiz_Reviews_Admin`: Gestión completa del panel de administración  
+  - `Aprendiz_Reviews_Public`: Funcionalidad frontend y shortcodes
+
+- **Modelos de datos robustos**:
+  - `Aprendiz_Reviews_Product`: CRUD completo para productos/servicios
+  - `Aprendiz_Reviews_Review`: Gestión avanzada de reseñas con filtros y estadísticas
+  - Métodos estáticos para consultas optimizadas y reutilización
+
+#### Mejorado
+- **Rendimiento**: Assets se cargan únicamente cuando el contenido los requiere
+- **Mantenibilidad**: Código organizado en responsabilidades específicas  
+- **Escalabilidad**: Arquitectura preparada para futuras funcionalidades
+- **Seguridad**: Validación y sanitización centralizadas en controladores
+- **Debugging**: Estructura clara facilita identificación y resolución de errores
+
+#### Técnico
+- **Autoloading optimizado**: Dependencias cargadas bajo demanda
+- **Hooks organizados**: Separación entre admin y public hooks
+- **Constantes definidas**: Paths y URLs centralizados para fácil mantenimiento
+- **Compatibilidad**: Mantiene retrocompatibilidad total con versiones anteriores
+- **PSR Standards**: Nombres de clases y métodos siguiendo estándares PHP
+
+---
+
 ## [1.4] - 2025-09-13
 
 ### Añadido
@@ -44,8 +90,10 @@
 - **Validación de productos**: Verificación de existencia y estado activo antes del guardado
 - **Rate limiting**: Protección natural contra spam mediante validación backend
 
+---
 
 ## [1.3] - 2025-09-10
+
 ### Añadido
 - **Sistema completo de Productos/Servicios**: Gestión independiente de múltiples productos con shortcodes específicos.
   - Nueva tabla `productos_servicios` para almacenar información de cada producto/servicio.
@@ -80,7 +128,10 @@
 - **Base de datos**: Nueva tabla `wp_productos_servicios` con migración automática
 - **Shortcodes**: Sistema dinámico con registro automático basado en productos activos
 
+---
+
 ## [1.2] - 2025-05-30
+
 ### Añadido
 - Opción en ajustes para definir los **segundos entre scrolls automáticos** del carrusel (autoplay delay).
 - Aplicación dinámica del valor al inicializar el carrusel Swiper.
@@ -90,3 +141,77 @@
   - Botón ✏️ "Editar" junto a cada reseña.
   - Formulario de edición con campos precargados (nombre, texto, valoración, avatar y fecha).
 - Sustituida la opción de tipo `Service` en el esquema de datos estructurados, ya que no se permiten fragmentos de reseñas.
+
+### Mejorado
+- **Interface de administración**: Listado de reseñas con enlaces de edición directa.
+- **Formulario de reseñas**: Validación mejorada y precarga de datos en modo edición.
+- **Carrusel**: Configuración de autoplay personalizable desde el admin.
+
+### Corregido
+- **Schema compatibility**: Eliminado tipo Service no compatible con Rich Snippets.
+- **Date handling**: Gestión correcta de fechas en formularios de edición.
+- **Swiper configuration**: Aplicación correcta del delay de autoplay configurado.
+
+---
+
+## [1.1] - 2025-04-15
+
+### Añadido
+- **Media uploader** integrado para selección de avatares desde la biblioteca de medios.
+- **Sistema de validación** manual de reseñas antes de mostrarlas públicamente.
+- **Configuración de schema type**: Selector entre Product y LocalBusiness en ajustes.
+- **Campos adicionales** en formulario de reseñas: avatar y estado de validación.
+
+### Mejorado
+- **Interface administrativa**: Diseño más intuitivo y organizado.
+- **Gestión de reseñas**: Listado con opciones de validación y edición.
+- **Compatibilidad**: Mejor integración con diferentes temas de WordPress.
+
+### Corregido
+- **Avatar display**: Visualización correcta de imágenes en carrusel.
+- **Schema output**: Generación válida de structured data.
+- **Admin styles**: Estilos consistentes en panel de administración.
+
+---
+
+## [1.0] - 2025-03-01
+
+### Añadido
+- **Versión inicial** del plugin Aprendiz Reviews.
+- **Carrusel básico** de reseñas con integración de Swiper.js.
+- **Panel de administración** para gestión de reseñas.
+- **Shortcode** `[reviews]` para mostrar carrusel en frontend.
+- **Schema.org básico** para SEO con tipo Product.
+- **Campos básicos**: nombre, texto, valoración (1-5 estrellas), fecha.
+
+### Técnico
+- **Framework**: WordPress 5.0+
+- **Frontend**: Swiper.js para carrusel responsive
+- **Backend**: Panel admin nativo de WordPress
+- **Base de datos**: Tabla personalizada para almacenar reseñas
+- **SEO**: Schema básico compatible con motores de búsqueda
+
+---
+
+## 📋 Notas de Migración
+
+### De 1.4 a 1.5
+- **Automática**: El plugin detecta la migración y reorganiza automáticamente los archivos.
+- **Compatibilidad**: Mantiene total retrocompatibilidad con shortcodes y datos existentes.
+- **Rendimiento**: Mejora significativa en velocidad de carga con nueva arquitectura.
+
+### De 1.3 a 1.4  
+- **Migración automática**: Datos existentes se mantienen intactos.
+- **Nuevas funcionalidades**: Formulario frontend disponible inmediatamente tras actualización.
+
+### De 1.2 a 1.3
+- **Migración de datos**: Reseñas existentes se asignan automáticamente al producto "General".
+- **Nuevos shortcodes**: Los shortcodes existentes siguen funcionando, se añaden nuevos dinámicos.
+
+---
+
+## 🔄 Próximas Versiones
+
+### En consideración
+- **Integración con reseñas de WooCommerce**
+- **Generación de reseñas con IA**

@@ -1,6 +1,6 @@
 # Aprendiz Reviews
 
-**Versión actual: 1.3**
+**Versión actual: 1.4**
 Un carrusel de reseñas avanzado y escalable para WordPress, creado por [Aprendiz de SEO](https://aprendizdeseo.top/).
 
 ![Captura del plugin Aprendiz Reviews](https://aprendizdeseo.top/wp-content/uploads/2025/05/plugin-reviews.jpg)
