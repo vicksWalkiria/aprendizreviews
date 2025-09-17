@@ -28,7 +28,7 @@ class Aprendiz_Reviews_Public {
         }
         
         // 2. Verificar si estamos en página de producto WooCommerce con hooks automáticos
-        if (is_product() && !$should_load_carousel) {
+        if (function_exists('is_product') && is_product() && !$should_load_carousel) {
             $should_load_carousel = $this->has_automatic_shortcode_hooks();
         }
         
@@ -78,7 +78,7 @@ class Aprendiz_Reviews_Public {
         }
         
         // 2. Verificar si estamos en página de producto WooCommerce con hooks automáticos  
-        if (is_product() && !$should_load_carousel) {
+        if (function_exists('is_product') && is_product() && !$should_load_carousel) {
             $should_load_carousel = $this->has_automatic_shortcode_hooks();
         }
         

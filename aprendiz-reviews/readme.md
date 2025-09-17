@@ -1,6 +1,6 @@
 # Aprendiz Reviews
 
-**Versión actual: 1.4**
+**Versión actual: 1.6**
 Un carrusel de reseñas avanzado y escalable para WordPress, creado por [Aprendiz de SEO](https://aprendizdeseo.top/).
 
 ![Captura del plugin Aprendiz Reviews](https://aprendizdeseo.top/wp-content/uploads/2025/05/plugin-reviews.jpg)
@@ -9,21 +9,21 @@ Un carrusel de reseñas avanzado y escalable para WordPress, creado por [Aprendi
 
 **Aprendiz Reviews** es un plugin profesional y escalable que te permite:
 
-- **Gestión multi-producto**: Crear múltiples productos/servicios con shortcodes independientes
+- **Gestión multi-producto**: Crear múltiples productos con shortcodes independientes
 - **Schema optimizado**: JSON-LD compatible con Google Rich Results (Product, LocalBusiness, Organization)
 - **Validación avanzada**: Sistema de aprobación con filtros por producto y estado
 - **Dashboard profesional**: Estadísticas completas y gestión centralizada
 - **Shortcodes dinámicos**: Cada producto genera su propio shortcode único
 - **Migración automática**: Actualización transparente desde versiones anteriores
 
-Ideal para negocios, profesionales y webs que necesiten mostrar testimonios organizados por productos/servicios sin depender de plataformas externas.
+Ideal para negocios, profesionales y webs que necesiten mostrar testimonios organizados por productos sin depender de plataformas externas.
 
 ## ⚙️ Instalación
 
 1. Sube la carpeta del plugin a `/wp-content/plugins/aprendiz_reviews/`.
 2. Activa el plugin desde el panel de administración de WordPress.
 3. Accede al menú **Aprendiz Reviews** en el admin para comenzar.
-4. Crea productos/servicios en **"Añadir Producto/Servicio"**.
+4. Crea productos en **"Añadir producto"**.
 5. Añade reseñas en **"Añadir Reseña"** y asígnalas a productos específicos.
 6. Usa los shortcodes generados (ej: `[reviews_general]`, `[reviews_mi_producto]`).
 
@@ -31,7 +31,7 @@ Ideal para negocios, profesionales y webs que necesiten mostrar testimonios orga
 
 ### **Sistema multi-producto**
 
-- Gestión independiente de productos/servicios
+- Gestión independiente de productos
 - Shortcodes únicos para cada producto
 - Schema JSON-LD específico por tipo
 
@@ -39,7 +39,7 @@ Ideal para negocios, profesionales y webs que necesiten mostrar testimonios orga
 ### **Interface administrativa**
 
 - Dashboard con estadísticas y shortcodes disponibles
-- Formularios de productos/servicios con campos completos
+- Formularios de productos con campos completos
 - Gestión de reseñas con filtros avanzados
 - Validación masiva de reseñas pendientes
 
@@ -66,7 +66,7 @@ Ideal para negocios, profesionales y webs que necesiten mostrar testimonios orga
 
 #### Características del formulario
 
-- **Campos**: Nombre, valoración (1-5 estrellas), producto/servicio, texto de reseña
+- **Campos**: Nombre, valoración (1-5 estrellas), producto, texto de reseña
 - **Interactividad**: Sistema de estrellas visual con hover effects
 - **Seguridad**: Protección CSRF con nonces de WordPress
 - **UX optimizada**: Animaciones suaves y feedback visual durante envío
@@ -87,7 +87,7 @@ Ideal para negocios, profesionales y webs que necesiten mostrar testimonios orga
 
 ### ¿Puedo tener reseñas para diferentes productos?
 
-Sí. La versión 1.3 incluye un sistema completo de productos/servicios. Cada uno tiene su propio shortcode y muestra solo sus reseñas específicas.
+Sí. La versión 1.3 incluye un sistema completo de productos. Cada uno tiene su propio shortcode y muestra solo sus reseñas específicas.
 
 ### ¿Puedo enviar reseñas desde el frontend?
 
@@ -104,10 +104,10 @@ La migración es automática. Todas las reseñas existentes se asignan al produc
 ## 📸 Capturas
 
 1. **Dashboard**: Estadísticas y shortcodes disponibles
-2. **Gestionar Productos/Servicios**: Listado con edición y desactivación
-3. **Añadir Producto/Servicio**: Formulario completo con schema types
+2. **Gestionar Productos**: Listado con edición y desactivación
+3. **Añadir producto**: Formulario completo con schema types
 4. **Gestionar Reseñas**: Filtros por producto y validación masiva
-5. **Formulario de reseñas**: Selector de producto/servicio de destino
+5. **Formulario de reseñas**: Selector de producto de destino
 6. **Carrusel frontend**: Reseñas específicas por producto
 
 ## 🧪 Compatibilidad

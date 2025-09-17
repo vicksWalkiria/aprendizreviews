@@ -11,7 +11,7 @@ class Aprendiz_Reviews_Product_Controller {
             $id = intval($_GET['eliminar_id']);
             if ($id !== 1) { // No permitir eliminar el producto por defecto
                 Aprendiz_Reviews_Product::deactivate($id);
-                $message = 'Producto/Servicio desactivado.';
+                $message = 'producto desactivado.';
                 $message_type = 'success';
             } else {
                 $message = 'No se puede eliminar el producto por defecto.';
@@ -81,14 +81,14 @@ class Aprendiz_Reviews_Product_Controller {
             $result = Aprendiz_Reviews_Product::update(intval($_POST['editar_id']), $data);
             return array(
                 'success' => $result !== false,
-                'message' => $result !== false ? 'Producto/Servicio actualizado.' : 'Error al actualizar.',
+                'message' => $result !== false ? 'producto actualizado.' : 'Error al actualizar.',
                 'type' => $result !== false ? 'success' : 'error'
             );
         } else {
             $result = Aprendiz_Reviews_Product::create($data);
             return array(
                 'success' => $result !== false,
-                'message' => $result !== false ? 'Producto/Servicio creado.' : 'Error al crear.',
+                'message' => $result !== false ? 'producto creado.' : 'Error al crear.',
                 'type' => $result !== false ? 'success' : 'error'
             );
         }

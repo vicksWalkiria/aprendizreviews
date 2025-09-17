@@ -10,13 +10,20 @@ class Aprendiz_Reviews_Admin {
     private $product_controller;
     private $review_controller;
     
+    private $import_controller;
+    private $auto_shortcode_controller;
+
     public function __construct($plugin_name, $version) {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
         $this->product_controller = new Aprendiz_Reviews_Product_Controller();
         $this->review_controller = new Aprendiz_Reviews_Review_Controller();
-        $this->import_controller = new Aprendiz_Reviews_Import_Controller();
-        $this->auto_shortcode_controller = new Aprendiz_Reviews_Auto_Shortcode_Controller();
+        if (class_exists('Aprendiz_Reviews_Import_Controller')) {
+            $this->import_controller = new Aprendiz_Reviews_Import_Controller();
+        }
+        if (class_exists('Aprendiz_Reviews_Auto_Shortcode_Controller')) {
+            $this->auto_shortcode_controller = new Aprendiz_Reviews_Auto_Shortcode_Controller();
+        }
     }
     
     public function enqueue_styles($hook) {
@@ -80,8 +87,8 @@ class Aprendiz_Reviews_Admin {
         
         add_submenu_page(
             'aprendiz-reviews',
-            'Productos/Servicios',
-            'Productos/Servicios', 
+            'Productos',
+            'Productos', 
             'manage_options', 
             'gestionar-productos', 
             array($this->product_controller, 'display_list')

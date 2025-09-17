@@ -3,7 +3,7 @@
  * Plugin Name: Aprendiz Reviews
  * Plugin URI: https://aprendizdeseo.top/plugin-reviews
  * Description: Plugin de carrusel de reseñas desarrollado por Aprendiz de SEO
- * Version: 1.5
+ * Version: 1.6
  * Author: Aprendiz de SEO
  * Author URI: https://aprendizdeseo.top
  */
@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Definir constantes
-define('APRENDIZ_REVIEWS_VERSION', '1.5');
+define('APRENDIZ_REVIEWS_VERSION', '1.6');
 define('APRENDIZ_REVIEWS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('APRENDIZ_REVIEWS_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('APRENDIZ_REVIEWS_PLUGIN_BASENAME', plugin_basename(__FILE__));

@@ -126,3 +126,6 @@ $page_title = $is_edit ? '✏️ Editar Producto' : '➕ Añadir Producto';
                            style="width: 100%;"
                            placeholder="https://ejemplo.com/imagen-producto.jpg">
                     <p class="description">URL de imagen
+
+                    <?php submit_button( 'Guardar producto' ); ?>
+

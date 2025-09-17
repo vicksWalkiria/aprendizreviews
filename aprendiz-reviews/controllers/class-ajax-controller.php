@@ -66,7 +66,7 @@ class Aprendiz_Reviews_Ajax_Controller {
         <h2>Nueva reseña recibida</h2>
         <hr>
         <strong>Nombre:</strong> {$nombre}<br>
-        <strong>Producto/Servicio:</strong> {$producto_nombre}<br>
+        <strong>Producto:</strong> {$producto_nombre}<br>
         <strong>Valoración:</strong> {$estrellas} ({$valoracion}/5)<br>
         <strong>Fecha:</strong> " . date('d/m/Y H:i') . "<br>
         <br>

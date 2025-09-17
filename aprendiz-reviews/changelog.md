@@ -1,5 +1,81 @@
 # 📦 Changelog - Aprendiz Reviews
 
+## [1.6] - 2025-09-14
+
+### 🏗️ Arquitectura Completamente Reorganizada + Integración WooCommerce Completa
+
+**Reestructuración completa del plugin siguiendo patrones MVC y mejores prácticas de WordPress:**
+
+#### Añadido
+
+- **Estructura MVC profesional**: Separación completa entre Modelos, Vistas y Controladores
+    - `models/`: Gestión de datos y operaciones de base de datos (Product, Review, Database)
+    - `controllers/`: Lógica de negocio (Product Controller, Review Controller, AJAX Controller)
+    - `admin/partials/`: Vistas del panel de administración organizadas por funcionalidad
+    - `public/partials/`: Vistas del frontend separadas por contexto
+    - `templates/`: Templates reutilizables para shortcodes y emails
+- **Sistema de carga inteligente**:
+    - Clase `Loader` centralizada para gestión de hooks y filtros
+    - Carga condicional de assets CSS/JS solo en páginas que los necesitan
+    - Detección automática de shortcodes para optimizar rendimiento
+- **Clases especializadas**:
+    - `Aprendiz_Reviews_Activator`: Instalación controlada con creación de tablas y migración
+    - `Aprendiz_Reviews_Deactivator`: Limpieza temporal al desactivar plugin
+    - `Aprendiz_Reviews_Admin`: Gestión completa del panel de administración
+    - `Aprendiz_Reviews_Public`: Funcionalidad frontend y shortcodes
+- **Modelos de datos robustos**:
+    - `Aprendiz_Reviews_Product`: CRUD completo para productos
+    - `Aprendiz_Reviews_Review`: Gestión avanzada de reseñas con filtros y estadísticas
+    - Métodos estáticos para consultas optimizadas y reutilización
+- **🛒 Importador de WooCommerce**: Nuevo sistema para importar productos automáticamente
+    - Detección automática de WooCommerce en el sitio
+    - Listado visual de productos con imágenes, precios y descripciones
+    - Generación automática de shortcodes únicos (`reviews_nombre_producto`)
+    - Prevención de duplicados con verificación de shortcodes existentes
+    - Interfaz intuitiva con selección múltiple para importar solo productos deseados
+    - Búsqueda inteligente por nombre y slug para conectar productos existentes
+- **🎯 Auto-inserción de Shortcodes**: Sistema avanzado de inserción automática en productos WooCommerce
+    - **Posiciones con palabras humanas**:
+        - "Después del título" - Justo debajo del nombre del producto
+        - "Después del precio" - Debajo del precio del producto
+        - "Después de la descripción corta" - Debajo de la descripción breve
+        - "Después del botón de comprar" - Debajo del botón "Añadir al carrito"
+        - "En las pestañas" - Dentro de la pestaña de descripción
+        - "Después de todo el resumen" - Debajo de toda la información del producto
+    - **Detección inteligente**: Solo productos que tienen reseñas validadas aparecen como candidatos
+    - **Conexión automática**: Vinculación entre productos de Aprendiz Reviews y productos WooCommerce por nombre
+    - **Hooks de WooCommerce**: Inserción usando hooks nativos (`woocommerce_single_product_summary`, etc.)
+    - **Persistencia**: Los hooks se guardan y cargan automáticamente en cada visita
+    - **Prevención de duplicados**: Detecta shortcodes ya insertados para evitar repeticiones
+    - **Vista previa visual**: Interfaz con tarjetas visuales para seleccionar posición y productos
+
+
+#### Mejorado
+
+- **Rendimiento**: Assets se cargan únicamente cuando el contenido los requiere
+- **Mantenibilidad**: Código organizado en responsabilidades específicas
+- **Escalabilidad**: Arquitectura preparada para futuras funcionalidades
+- **Seguridad**: Validación y sanitización centralizadas en controladores
+- **Debugging**: Estructura clara facilita identificación y resolución de errores
+- **Terminología**: Cambio de "Productos" a simplemente "Productos" en toda la interfaz
+- **Cargas de CSS/JS**: Optimizada para páginas de producto WooCommerce con shortcodes insertados automáticamente
+- **UX del formulario frontend**: Mejor feedback visual y animaciones suaves
+- **Emails de notificación**: Diseño HTML mejorado con estilos y enlaces directos al admin
+
+
+#### Técnico
+
+- **Autoloading optimizado**: Dependencias cargadas bajo demanda
+- **Hooks organizados**: Separación entre admin y public hooks
+- **Constantes definidas**: Paths y URLs centralizados para fácil mantenimiento
+- **Compatibilidad**: Mantiene retrocompatibilidad total con versiones anteriores
+- **PSR Standards**: Nombres de clases y métodos siguiendo estándares PHP[^1][^4]
+- **Controladores adicionales**: `Import_Controller` y `Auto_Shortcode_Controller` para nuevas funcionalidades
+- **Base de datos optimizada**: Consultas mejoradas y índices para mayor rendimiento
+- **Funciones estáticas**: Métodos de modelos optimizados para reutilización
+
+***
+
 ## [1.5] - 2025-09-14
 
 ### 🏗️ Arquitectura Completamente Reorganizada
@@ -26,7 +102,7 @@
   - `Aprendiz_Reviews_Public`: Funcionalidad frontend y shortcodes
 
 - **Modelos de datos robustos**:
-  - `Aprendiz_Reviews_Product`: CRUD completo para productos/servicios
+  - `Aprendiz_Reviews_Product`: CRUD completo para productos
   - `Aprendiz_Reviews_Review`: Gestión avanzada de reseñas con filtros y estadísticas
   - Métodos estáticos para consultas optimizadas y reutilización
 
@@ -50,7 +126,7 @@
 
 ### Añadido
 - **Formulario frontend de reseñas**: Nuevo shortcode `[reviews_form]` para capturar reseñas directamente desde el frontend
-  - Campos: Nombre, valoración con estrellas interactivas (1-5), selector de producto/servicio, texto de reseña
+  - Campos: Nombre, valoración con estrellas interactivas (1-5), selector de producto, texto de reseña
   - Sistema de estrellas visual con efectos hover y click para mejor experiencia de usuario
   - Título personalizable: `[reviews_form titulo="Tu mensaje personalizado"]`
 - **Envío automático por email**: Notificación instantánea al administrador (vicks630@gmail.com) con:
@@ -71,7 +147,7 @@
 
 ### Mejorado
 - **Gestión de reseñas**: Las reseñas del frontend se guardan automáticamente como "Pendientes" para revisión manual
-- **Base de datos**: Integración perfecta con el sistema existente de productos/servicios
+- **Base de datos**: Integración perfecta con el sistema existente de productos
 - **Rendimiento**: Scripts y estilos se cargan únicamente en páginas que contienen el shortcode `[reviews_form]`
 - **Accesibilidad**: Labels apropiados y navegación por teclado en el sistema de estrellas
 
@@ -95,10 +171,10 @@
 ## [1.3] - 2025-09-10
 
 ### Añadido
-- **Sistema completo de Productos/Servicios**: Gestión independiente de múltiples productos con shortcodes específicos.
-  - Nueva tabla `productos_servicios` para almacenar información de cada producto/servicio.
-  - Menú "Gestionar Productos/Servicios" con listado, edición y desactivación.
-  - Formulario "Añadir Producto/Servicio" con campos: nombre, shortcode, tipo de schema, descripción, URL e imagen.
+- **Sistema completo de Productos**: Gestión independiente de múltiples productos con shortcodes específicos.
+  - Nueva tabla `productos_servicios` para almacenar información de cada producto.
+  - Menú "Gestionar Productos" con listado, edición y desactivación.
+  - Formulario "Añadir producto" con campos: nombre, shortcode, tipo de schema, descripción, URL e imagen.
 - **Shortcodes dinámicos**: Cada producto genera su propio shortcode (ej: `[reviews_general]`, `[reviews_mi_producto]`).
 - **Schema JSON-LD optimizado**: Generación automática de structured data específico para cada tipo:
   - Soporte para `Product`, `LocalBusiness` y `Organization`.
@@ -110,7 +186,7 @@
 - **Validación masiva**: Selección múltiple de reseñas para validar en lote.
 
 ### Mejorado
-- **Formulario de reseñas**: Añadido selector desplegable para elegir producto/servicio de destino.
+- **Formulario de reseñas**: Añadido selector desplegable para elegir producto de destino.
 - **Gestión de reseñas**: Interfaz mejorada con información del producto asociado y filtros dinámicos.
 - **Media uploader**: Corregido el funcionamiento del botón "Elegir imagen" en todas las páginas admin.
 - **Estructura de menús**: Reorganización completa con menú principal y submenús específicos.

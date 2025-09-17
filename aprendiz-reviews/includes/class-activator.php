@@ -13,7 +13,7 @@ class Aprendiz_Reviews_Activator {
     private static function create_tables() {
         global $wpdb;
 
-        // Crear tabla de productos/servicios
+        // Crear tabla de productos
         $tabla_productos = $wpdb->prefix . 'productos_servicios';
         $charset_collate = $wpdb->get_charset_collate();
 

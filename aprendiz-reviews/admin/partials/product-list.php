@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) {
 ?>
 
 <div class="wrap">
-    <h1>📦 Gestionar Productos/Servicios</h1>
+    <h1>📦 Gestionar Productos</h1>
     
     <?php if (isset($message) && !empty($message)): ?>
         <div class="notice notice-<?php echo $message_type; ?> is-dismissible">
