@@ -5,6 +5,10 @@ if (!defined('ABSPATH')) {
 
 class Aprendiz_Reviews_Auto_Shortcode_Controller {
     
+    // Propiedad estática para guardar las referencias de los closures (no estrictamente
+    // necesaria para esta solución de limpieza, pero buena práctica si necesitaras remove_action en el mismo request).
+    private static $added_hooks = array();
+    
     public function display_auto_shortcode_page() {
         $message = '';
         $message_type = '';
@@ -17,11 +21,31 @@ class Aprendiz_Reviews_Auto_Shortcode_Controller {
             $products_with_reviews = $this->get_products_with_reviews();
         }
         
+        // Procesar limpieza completa
+        if (isset($_POST['clean_all_hooks'])) {
+            // No se necesita nonce para una limpieza, pero podrías añadir uno por seguridad.
+            $this->clean_all_hooks();
+            $message = 'Todos los hooks han sido limpiados correctamente.';
+            $message_type = 'success';
+            $products_with_reviews = $this->get_products_with_reviews(); // Recargar
+        }
+        
         // Procesar inserción automática
-        if ($_POST && isset($_POST['insert_shortcodes']) && !empty($_POST['selected_products'])) {
+        if (isset($_POST['insert_shortcodes']) && isset($_POST['selected_products']) && !empty($_POST['selected_products'])) {
+            // Verificar nonce
+            if (!wp_verify_nonce($_POST['_wpnonce'], 'insert_shortcodes_nonce')) {
+                wp_die('Error de seguridad.');
+            }
+            
+            // Primero limpiar hooks existentes para evitar duplicados y cambiar de posición
+            $this->clean_all_hooks();
+            
             $result = $this->insert_shortcodes_automatically($_POST['selected_products'], $_POST['hook_position']);
             $message = $result['message'];
             $message_type = $result['type'];
+            
+            // Recargar productos después de la inserción
+            $products_with_reviews = $this->get_products_with_reviews();
         }
         
         include APRENDIZ_REVIEWS_PLUGIN_PATH . 'admin/partials/auto-shortcode.php';
@@ -46,7 +70,7 @@ class Aprendiz_Reviews_Auto_Shortcode_Controller {
                         'wc_product' => $wc_product,
                         'review_count' => $review_count,
                         'shortcode' => $our_product->shortcode,
-                        'already_inserted' => $this->shortcode_already_inserted($wc_product, $our_product->shortcode),
+                        'already_inserted' => $this->shortcode_already_inserted($our_product->shortcode),
                         'wc_product_id' => $wc_product->get_id()
                     );
                 }
@@ -57,7 +81,7 @@ class Aprendiz_Reviews_Auto_Shortcode_Controller {
     }
     
     private function find_woocommerce_product($our_product) {
-        // 1. Buscar por nombre exacto
+        // Buscar por nombre exacto
         $wc_products = wc_get_products(array(
             'name' => $our_product->nombre,
             'status' => 'publish',
@@ -68,7 +92,7 @@ class Aprendiz_Reviews_Auto_Shortcode_Controller {
             return $wc_products[0];
         }
         
-        // 2. Buscar por slug generado desde el nombre
+        // Buscar por slug
         $slug = sanitize_title($our_product->nombre);
         $wc_products = wc_get_products(array(
             'slug' => $slug,
@@ -80,43 +104,27 @@ class Aprendiz_Reviews_Auto_Shortcode_Controller {
             return $wc_products[0];
         }
         
-        // 3. Buscar por nombre parcial (más flexible)
-        $wc_products = wc_get_products(array(
-            'status' => 'publish',
-            'limit' => -1
-        ));
-        
-        foreach ($wc_products as $wc_product) {
-            // Comparar nombres normalizados
-            $our_name = strtolower(trim($our_product->nombre));
-            $wc_name = strtolower(trim($wc_product->get_name()));
-            
-            if ($our_name === $wc_name) {
-                return $wc_product;
-            }
-            
-            // Buscar coincidencia parcial
-            if (strpos($wc_name, $our_name) !== false || strpos($our_name, $wc_name) !== false) {
-                return $wc_product;
-            }
-        }
-        
         return null;
     }
 
-    private function shortcode_already_inserted($wc_product, $shortcode) {
-        $content = $wc_product->get_description();
-        $short_description = $wc_product->get_short_description();
+    private function shortcode_already_inserted($shortcode) {
+        $saved_hooks = get_option('aprendiz_reviews_auto_hooks', array());
         
-        return (strpos($content, "[$shortcode]") !== false || strpos($short_description, "[$shortcode]") !== false);
+        foreach ($saved_hooks as $hook_data) {
+            if (isset($hook_data['shortcode']) && $hook_data['shortcode'] === $shortcode) {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     private function insert_shortcodes_automatically($selected_products, $hook_position) {
         $inserted_count = 0;
         $errors = array();
+        $new_hooks = array();
         
         foreach ($selected_products as $our_product_id) {
-            // Buscar nuestro producto
             $our_product = Aprendiz_Reviews_Product::get_by_id($our_product_id);
             if (!$our_product) {
                 continue;
@@ -125,32 +133,34 @@ class Aprendiz_Reviews_Auto_Shortcode_Controller {
             // Buscar el producto WooCommerce correspondiente
             $wc_product = $this->find_woocommerce_product($our_product);
             if (!$wc_product) {
-                $errors[] = "No se encontró producto WC para: " . $our_product->nombre;
+                $errors[] = $our_product->nombre . ' (no encontrado en WC)';
                 continue;
             }
             
             $shortcode = $our_product->shortcode;
+            $wc_product_id = $wc_product->get_id();
             
-            // Verificar si ya está insertado
-            if ($this->shortcode_already_inserted($wc_product, $shortcode)) {
-                continue;
-            }
+            // Crear hook data con el ID del producto WooCommerce
+            $hook_data = $this->get_hook_data_for_position($shortcode, $hook_position, $wc_product_id);
             
-            // Insertar según la posición elegida
-            $success = $this->insert_shortcode_at_position($wc_product, $shortcode, $hook_position);
-            
-            if ($success) {
+            if ($hook_data) {
+                $new_hooks[] = $hook_data;
                 $inserted_count++;
             } else {
-                $errors[] = $wc_product->get_name();
+                $errors[] = $our_product->nombre . ' (posición inválida)';
             }
+        }
+        
+        // Guardar todos los hooks de una vez
+        if (!empty($new_hooks)) {
+            update_option('aprendiz_reviews_auto_hooks', $new_hooks);
         }
         
         $message = "$inserted_count shortcodes insertados correctamente.";
         if (!empty($errors)) {
             $message .= " Errores: " . implode(', ', array_slice($errors, 0, 3));
             if (count($errors) > 3) {
-                $message .= " y " . (count($errors) - 3) . " más.";
+                $message .= " y " . (count($errors) - 3) . " más...";
             }
         }
         
@@ -160,111 +170,146 @@ class Aprendiz_Reviews_Auto_Shortcode_Controller {
         );
     }
     
-    private function insert_shortcode_at_position($wc_product, $shortcode, $position) {
-        switch ($position) {
-            case 'after_title':
-                return $this->add_hook_function($shortcode, 'woocommerce_single_product_summary', 6);
-                
-            case 'after_price':
-                return $this->add_hook_function($shortcode, 'woocommerce_single_product_summary', 11);
-                
-            case 'after_description':
-                return $this->add_hook_function($shortcode, 'woocommerce_single_product_summary', 21);
-                
-            case 'after_add_to_cart':
-                return $this->add_hook_function($shortcode, 'woocommerce_single_product_summary', 31);
-                
-            case 'in_tabs':
-                return $this->add_to_product_tabs($wc_product, $shortcode);
-                
-            case 'after_summary':
-                return $this->add_hook_function($shortcode, 'woocommerce_after_single_product_summary', 15);
-                
-            default:
-                // Insertar directamente en la descripción como fallback
-                return $this->add_to_description($wc_product, $shortcode);
-        }
-    }
-    
-    private function add_hook_function($shortcode, $hook_name, $priority) {
-        $function_name = 'aprendiz_reviews_display_' . str_replace(['reviews_', '-'], ['', '_'], $shortcode);
-        
-        // Crear función dinámica para el hook
-        $hook_code = "
-        if (!function_exists('{$function_name}')) {
-            function {$function_name}() {
-                global \$product;
-                if (is_product()) {
-                    echo do_shortcode('[{$shortcode}]');
-                }
-            }
-            add_action('{$hook_name}', '{$function_name}', {$priority});
-        }";
-        
-        // Guardar en base de datos para que persista
-        $existing_hooks = get_option('aprendiz_reviews_auto_hooks', array());
-        $existing_hooks[$function_name] = array(
-            'shortcode' => $shortcode,
-            'hook_name' => $hook_name,
-            'priority' => $priority,
-            'function_name' => $function_name
+    private function get_hook_data_for_position($shortcode, $position, $wc_product_id) {
+        $hook_configs = array(
+            
+            // 🏷️ DESPUÉS DEL TÍTULO - Hook específico que se ejecuta después del título
+            'after_title' => array(
+                'hook_name' => 'woocommerce_template_single_title',
+                'priority' => 15  // Después de que se renderice el título
+            ),
+            
+            // 💰 DESPUÉS DEL PRECIO - Hook específico después del precio
+            'after_price' => array(
+                'hook_name' => 'woocommerce_template_single_price', 
+                'priority' => 15  // Después de que se renderice el precio
+            ),
+            
+            // 📄 DESPUÉS DE LA DESCRIPCIÓN CORTA - Hook específico
+            'after_description' => array(
+                'hook_name' => 'woocommerce_template_single_excerpt',
+                'priority' => 15  // Después de que se renderice la descripción
+            ),
+            
+            // 🛒 ANTES DEL FORMULARIO - Hook específico antes del botón
+            'before_add_to_cart' => array(
+                'hook_name' => 'woocommerce_before_add_to_cart_form',
+                'priority' => 10
+            ),
+            
+            // 🛒 DESPUÉS DEL FORMULARIO - Hook específico después del botón
+            'after_add_to_cart' => array(
+                'hook_name' => 'woocommerce_after_add_to_cart_form',
+                'priority' => 10
+            ),
+            
+            // 📋 DESPUÉS DE META (categorías, etiquetas) - Hook específico
+            'after_meta' => array(
+                'hook_name' => 'woocommerce_template_single_meta',
+                'priority' => 15
+            ),
+            
+            // ⬇️ DESPUÉS DEL RESUMEN COMPLETO
+            'after_summary' => array(
+                'hook_name' => 'woocommerce_after_single_product_summary',
+                'priority' => 5
+            ),
+            
+            // 📋 DESPUÉS DE LAS PESTAÑAS - Hook específico 
+            'after_tabs' => array(
+                'hook_name' => 'woocommerce_product_after_tabs',
+                'priority' => 10
+            ),
+            
+            // 🎯 ANTES DE TODO EL PRODUCTO - Hook genérico muy temprano
+            'before_product' => array(
+                'hook_name' => 'woocommerce_before_single_product',
+                'priority' => 10
+            ),
+            
+            // 🎯 DESPUÉS DE TODO EL PRODUCTO - Hook genérico muy tarde
+            'after_product' => array(
+                'hook_name' => 'woocommerce_after_single_product', 
+                'priority' => 10
+            )
         );
-        update_option('aprendiz_reviews_auto_hooks', $existing_hooks);
         
-        // Ejecutar inmediatamente
-        eval($hook_code);
-        
-        return true;
-    }
-    
-    private function add_to_description($wc_product, $shortcode) {
-        $current_description = $wc_product->get_description();
-        
-        // Verificar si ya está el shortcode
-        if (strpos($current_description, "[{$shortcode}]") !== false) {
-            return false; // Ya existe
+        if (!isset($hook_configs[$position])) {
+            return false;
         }
         
-        $new_description = $current_description . "\n\n[{$shortcode}]";
+        $config = $hook_configs[$position];
         
-        $wc_product->set_description($new_description);
-        $result = $wc_product->save();
-        
-        return $result ? true : false;
+        return array(
+            'shortcode' => $shortcode,
+            'wc_product_id' => $wc_product_id,
+            'hook_name' => $config['hook_name'],
+            'priority' => $config['priority'],
+            'position' => $position
+        );
+    }
+
+
+
+    
+    /**
+     * Limpia TODOS nuestros hooks eliminando la opción de configuración.
+     * Esto es más robusto que intentar usar remove_action con callbacks dinámicos.
+     */
+    private function clean_all_hooks() {
+        // Simplemente borra la opción que contiene la lista de hooks a cargar.
+        // En el siguiente request, init_saved_hooks() no cargará nada.
+        delete_option('aprendiz_reviews_auto_hooks');
     }
     
-    private function add_to_product_tabs($wc_product, $shortcode) {
-        // Para las pestañas, añadiremos al final de la descripción principal
-        return $this->add_to_description($wc_product, $shortcode);
-    }
-    
-    // Método estático para cargar hooks guardados
+    /**
+     * Carga y registra todos los hooks guardados.
+     * Usa Closures para un manejo seguro de variables y evita eval().
+     */
     public static function init_saved_hooks() {
+        // Prevenir doble ejecución
+        if (defined('APRENDIZ_REVIEWS_HOOKS_LOADED')) {
+            return;
+        }
+        define('APRENDIZ_REVIEWS_HOOKS_LOADED', true);
+        
         $saved_hooks = get_option('aprendiz_reviews_auto_hooks', array());
         
         foreach ($saved_hooks as $hook_data) {
-            if (is_array($hook_data) && isset($hook_data['function_name'])) {
-                $function_name = $hook_data['function_name'];
-                $shortcode = $hook_data['shortcode'];
-                $hook_name = $hook_data['hook_name'];
-                $priority = $hook_data['priority'];
-                
-                if (!function_exists($function_name)) {
-                    $hook_code = "
-                    function {$function_name}() {
-                        global \$product;
-                        if (is_product()) {
-                            echo do_shortcode('[{$shortcode}]');
-                        }
-                    }";
-                    
-                    eval($hook_code);
-                    add_action($hook_name, $function_name, $priority);
-                }
+            if (!is_array($hook_data) || !isset($hook_data['shortcode']) || !isset($hook_data['wc_product_id'])) {
+                continue;
             }
+            
+            $shortcode = $hook_data['shortcode'];
+            $wc_product_id = $hook_data['wc_product_id'];
+            $hook_name = $hook_data['hook_name'];
+            $priority = $hook_data['priority'];
+            
+            // Creamos un Closure que encapsula el shortcode y el ID del producto.
+            // Esto asegura que la función tenga acceso a sus valores correctos.
+            $callback = function() use ($shortcode, $wc_product_id) {
+                global $product;
+                // Verificar que estamos en la página del producto correcto
+                if (is_product() && $product && $product->get_id() == $wc_product_id) {
+                    echo '<div class="aprendiz-reviews-auto-wrapper">';
+                    echo do_shortcode("[$shortcode]");
+                    echo '</div>';
+                }
+            };
+            
+            // Agregamos el hook usando el Closure
+            add_action($hook_name, $callback, $priority);
+            
+            // Guardamos la referencia por si fuera necesario, aunque la limpieza
+            // ahora se hace borrando la opción completa.
+            self::$added_hooks[] = array(
+                'hook_name' => $hook_name,
+                'callback'  => $callback, 
+                'priority'  => $priority
+            );
         }
     }
 }
 
-// Ejecutar hooks guardados al cargar WordPress
-add_action('init', array('Aprendiz_Reviews_Auto_Shortcode_Controller', 'init_saved_hooks'));
+// Ejecutar hooks guardados en el momento adecuado. Prioridad 20 para asegurar que WC esté cargado.
+add_action('init', array('Aprendiz_Reviews_Auto_Shortcode_Controller', 'init_saved_hooks'), 20);
