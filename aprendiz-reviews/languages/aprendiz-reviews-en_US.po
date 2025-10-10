@@ -1,0 +1,709 @@
+# Translation file for Aprendiz Reviews
+# Copyright (C) 2025
+# This file is distributed under the GPL-2.0-or-later license.
+msgid ""
+msgstr ""
+"Project-Id-Version: Aprendiz Reviews 1.7.0\n"
+"Report-Msgid-Bugs-To: https://aprendizdeseo.top\n"
+"POT-Creation-Date: 2025-10-07 00:00+0000\n"
+"PO-Revision-Date: 2025-10-07 14:10+0200\n"
+"Last-Translator: Aprendiz de SEO\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: aprendiz-reviews\n"
+"X-Generator: Poedit 3.7\n"
+
+msgid "Aprendiz Reviews"
+msgstr "Aprendiz Reviews"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Productos"
+msgstr "Products"
+
+msgid "Añadir Producto"
+msgstr "Add Product"
+
+msgid "Gestionar Reseñas"
+msgstr "Manage Reviews"
+
+msgid "Añadir Reseña"
+msgstr "Add Review"
+
+msgid "Importar de WooCommerce"
+msgstr "Import from WooCommerce"
+
+msgid "Importar WooCommerce"
+msgstr "Import WooCommerce"
+
+msgid "Insertar Automáticamente"
+msgstr "Auto-Insert"
+
+msgid "Auto-Insertar"
+msgstr "Auto-Insert"
+
+msgid "Producto no encontrado."
+msgstr "Product not found."
+
+msgid "No hay reseñas para este producto."
+msgstr "No reviews for this product."
+
+msgid "🔍 Comparte tu experiencia"
+msgstr "🔍 Share your experience"
+
+msgid "Enviando..."
+msgstr "Sending..."
+
+msgid "Error al enviar la reseña"
+msgstr "Error sending review"
+
+msgid "Enviar Reseña"
+msgstr "Submit Review"
+
+msgid "Error de conexión. Inténtalo de nuevo."
+msgstr "Connection error. Please try again."
+
+msgid "producto desactivado."
+msgstr "Product deactivated."
+
+msgid "No se puede eliminar el producto por defecto."
+msgstr "Cannot delete the default product."
+
+msgid "El shortcode ya existe. Elige otro."
+msgstr "The shortcode already exists. Choose another one."
+
+msgid "producto actualizado."
+msgstr "Product updated."
+
+msgid "Error al actualizar."
+msgstr "Error updating."
+
+msgid "producto creado."
+msgstr "Product created."
+
+msgid "Error al crear."
+msgstr "Error creating."
+
+msgid "%d reseña validada."
+msgid_plural "%d reseñas validadas."
+msgstr[0] "%d review validated."
+msgstr[1] "%d reviews validated."
+
+msgid "Error al validar reseñas."
+msgstr "Error validating reviews."
+
+msgid "Reseña eliminada."
+msgstr "Review deleted."
+
+msgid "Error al eliminar reseña."
+msgstr "Error deleting review."
+
+msgid "Reseña actualizada."
+msgstr "Review updated."
+
+msgid "Error al actualizar reseña."
+msgstr "Error updating review."
+
+msgid "Reseña guardada."
+msgstr "Review saved."
+
+msgid "Error al guardar reseña."
+msgstr "Error saving review."
+
+msgid "Aprendiz Reviews - Dashboard"
+msgstr "Aprendiz Reviews - Dashboard"
+
+msgid "Migración completada:"
+msgstr "Migration completed:"
+
+msgid "Todas las reseñas anteriores están disponibles en el producto \"General\" con shortcode %s"
+msgstr "All previous reviews are available in the \"General\" product with shortcode %s"
+
+msgid "Estadísticas"
+msgstr "Statistics"
+
+msgid "Productos activos:"
+msgstr "Active products:"
+
+msgid "Total productos:"
+msgstr "Total products:"
+
+msgid "Total reseñas:"
+msgstr "Total reviews:"
+
+msgid "Reseñas validadas:"
+msgstr "Validated reviews:"
+
+msgid "Reseñas pendientes:"
+msgstr "Pending reviews:"
+
+msgid "Shortcodes Disponibles"
+msgstr "Available Shortcodes"
+
+msgid "%s reseña"
+msgid_plural "%s reseñas"
+msgstr[0] "%s review"
+msgstr[1] "%s reviews"
+
+msgid "Formulario para capturar reseñas"
+msgstr "Form to capture reviews"
+
+msgid "Tu título personalizado"
+msgstr "Your custom title"
+
+msgid "Formulario con título personalizado"
+msgstr "Form with custom title"
+
+msgid "Acciones Rápidas"
+msgstr "Quick Actions"
+
+msgid "Crear Producto"
+msgstr "Create Product"
+
+msgid "Ver Reseñas Pendientes (%s)"
+msgstr "View Pending Reviews (%s)"
+
+msgid "✏️ Editar Producto"
+msgstr "✏️ Edit Product"
+
+msgid "Nombre *"
+msgstr "Name *"
+
+msgid "Ej: Consultoría SEO"
+msgstr "Ex: SEO Consulting"
+
+msgid "Nombre del producto que se mostrará en las reseñas."
+msgstr "Product name that will be displayed in reviews."
+
+msgid "Shortcode *"
+msgstr "Shortcode *"
+
+msgid "reviews_mi_producto"
+msgstr "reviews_my_product"
+
+msgid "Solo letras, números y guiones bajos"
+msgstr "Only letters, numbers and underscores"
+
+msgid "Shortcode único para mostrar reseñas de este producto. Solo letras, números y guiones bajos. Ejemplo:"
+msgstr "Unique shortcode to display reviews for this product. Only letters, numbers and underscores. Example:"
+
+msgid "Tipo de Schema *"
+msgstr "Schema Type *"
+
+msgid "Tipo de schema para SEO:"
+msgstr "Schema type for SEO:"
+
+msgid "Para productos físicos o digitales"
+msgstr "For physical or digital products"
+
+msgid "Para negocios locales"
+msgstr "For local businesses"
+
+msgid "Para organizaciones y empresas"
+msgstr "For organizations and companies"
+
+msgid "Descripción"
+msgstr "Description"
+
+msgid "Descripción breve del producto"
+msgstr "Brief product description"
+
+msgid "Descripción que aparecerá en el schema estructurado para SEO."
+msgstr "Description that will appear in the structured schema for SEO."
+
+msgid "URL del Producto"
+msgstr "Product URL"
+
+msgid "https://ejemplo.com/mi-producto"
+msgstr "https://example.com/my-product"
+
+msgid "URL oficial del producto (opcional)."
+msgstr "Official product URL (optional)."
+
+msgid "URL de Imagen"
+msgstr "Image URL"
+
+msgid "https://ejemplo.com/imagen-producto.jpg"
+msgstr "https://example.com/product-image.jpg"
+
+msgid "URL de imagen del producto para SEO."
+msgstr "Product image URL for SEO."
+
+msgid "Guardar producto"
+msgstr "Save product"
+
+msgid "📦 Gestionar Productos"
+msgstr "📦 Manage Products"
+
+msgid "➕ Añadir Nuevo"
+msgstr "➕ Add New"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Nombre"
+msgstr "Name"
+
+msgid "Tipo"
+msgstr "Type"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Estado"
+msgstr "Status"
+
+msgid "Reseñas"
+msgstr "Reviews"
+
+msgid "Acciones"
+msgstr "Actions"
+
+msgid "✅ Activo"
+msgstr "✅ Active"
+
+msgid "❌ Inactivo"
+msgstr "❌ Inactive"
+
+msgid "Editar"
+msgstr "Edit"
+
+msgid "¿Seguro que quieres desactivar este producto?"
+msgstr "Are you sure you want to deactivate this product?"
+
+msgid "Desactivar"
+msgstr "Deactivate"
+
+msgid "Reactivar"
+msgstr "Reactivate"
+
+msgid "Producto por defecto"
+msgstr "Default product"
+
+msgid "No hay productos creados."
+msgstr "No products created."
+
+msgid "Crear el primero"
+msgstr "Create the first one"
+
+msgid "✏️ Editar Reseña"
+msgstr "✏️ Edit Review"
+
+msgid "Nombre del cliente"
+msgstr "Customer name"
+
+msgid "Valoración *"
+msgstr "Rating *"
+
+msgid "Texto de la Reseña *"
+msgstr "Review Text *"
+
+msgid "Escribe aquí el comentario de la reseña..."
+msgstr "Write the review comment here..."
+
+msgid "Fecha de Reseña *"
+msgstr "Review Date *"
+
+msgid "Fecha en la que se hizo la reseña (se mantendrá la hora actual)."
+msgstr "Date when the review was made (current time will be kept)."
+
+msgid "Producto *"
+msgstr "Product *"
+
+msgid "Producto al que pertenece esta reseña."
+msgstr "Product to which this review belongs."
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "URL del avatar"
+msgstr "Avatar URL"
+
+msgid "Elegir imagen"
+msgstr "Choose image"
+
+msgid "Quitar"
+msgstr "Remove"
+
+msgid "Imagen del perfil del cliente (opcional)."
+msgstr "Customer profile image (optional)."
+
+msgid "Actualizar reseña"
+msgstr "Update review"
+
+msgid "Guardar reseña"
+msgstr "Save review"
+
+msgid "Cancelar"
+msgstr "Cancel"
+
+msgid "Información de la Reseña"
+msgstr "Review Information"
+
+msgid "ID:"
+msgstr "ID:"
+
+msgid "Fecha de creación:"
+msgstr "Creation date:"
+
+msgid "Estado:"
+msgstr "Status:"
+
+msgid "✅ Validada (visible públicamente)"
+msgstr "✅ Validated (publicly visible)"
+
+msgid "⏳ Pendiente de validación"
+msgstr "⏳ Pending validation"
+
+msgid "Producto asociado:"
+msgstr "Associated product:"
+
+msgid "📝 Gestionar Reseñas"
+msgstr "📝 Manage Reviews"
+
+msgid "➕ Añadir Nueva"
+msgstr "➕ Add New"
+
+msgid "Todos los productos"
+msgstr "All products"
+
+msgid "Todas las reseñas"
+msgstr "All reviews"
+
+msgid "Solo validadas"
+msgstr "Only validated"
+
+msgid "Solo pendientes"
+msgstr "Only pending"
+
+msgid "Filtrar"
+msgstr "Filter"
+
+msgid "Limpiar filtros"
+msgstr "Clear filters"
+
+msgid "Reseña"
+msgstr "Review"
+
+msgid "Valoración"
+msgstr "Rating"
+
+msgid "Fecha"
+msgstr "Date"
+
+msgid "No hay reseñas que coincidan con los filtros."
+msgstr "No reviews match the filters."
+
+msgid "Añadir la primera reseña"
+msgstr "Add the first review"
+
+msgid "✅ Validada"
+msgstr "✅ Validated"
+
+msgid "⏳ Pendiente"
+msgstr "⏳ Pending"
+
+msgid "📷 Con avatar"
+msgstr "📷 With avatar"
+
+msgid "Sin asignar"
+msgstr "Unassigned"
+
+msgid "¿Eliminar esta reseña permanentemente?"
+msgstr "Delete this review permanently?"
+
+msgid "Eliminar"
+msgstr "Delete"
+
+msgid "✅ Validar Seleccionadas"
+msgstr "✅ Validate Selected"
+
+msgid "Selecciona las reseñas que quieres validar y hacer públicas."
+msgstr "Select the reviews you want to validate and make public."
+
+msgid "🛒 Importar desde WooCommerce"
+msgstr "🛒 Import from WooCommerce"
+
+msgid "WooCommerce no encontrado:"
+msgstr "WooCommerce not found:"
+
+msgid "Este importador requiere que WooCommerce esté instalado y activado."
+msgstr "This importer requires WooCommerce to be installed and activated."
+
+msgid "Instalar WooCommerce"
+msgstr "Install WooCommerce"
+
+msgid "No se encontraron productos en WooCommerce."
+msgstr "No products found in WooCommerce."
+
+msgid "Crear tu primer producto"
+msgstr "Create your first product"
+
+msgid "Selecciona los productos de WooCommerce para crear automáticamente productos de reseñas con sus shortcodes."
+msgstr "Select WooCommerce products to automatically create review products with their shortcodes."
+
+msgid "Seleccionar todos"
+msgstr "Select all"
+
+msgid "(%d disponibles para importar)"
+msgstr "(%d available to import)"
+
+msgid "Importar"
+msgstr "Import"
+
+msgid "Imagen"
+msgstr "Image"
+
+msgid "Producto"
+msgstr "Product"
+
+msgid "Precio"
+msgstr "Price"
+
+msgid "Gratis"
+msgstr "Free"
+
+msgid "✅ Existe"
+msgstr "✅ Exists"
+
+msgid "➕ Nuevo"
+msgstr "➕ New"
+
+msgid "📥 Importar Seleccionados"
+msgstr "📥 Import Selected"
+
+msgid "Se crearán productos de reseñas con shortcodes únicos para cada uno."
+msgstr "Review products will be created with unique shortcodes for each one."
+
+msgid "Insertar Shortcodes Automáticamente"
+msgstr "Auto-Insert Shortcodes"
+
+msgid "Inserta automáticamente shortcodes de reseñas en productos WooCommerce que ya tengan reseñas validadas."
+msgstr "Automatically insert review shortcodes into WooCommerce products that already have validated reviews."
+
+msgid "Shortcodes ya insertados"
+msgstr "Shortcodes already inserted"
+
+msgid "¿Quieres cambiar la posición de las reseñas?"
+msgstr "Do you want to change the position of the reviews?"
+
+msgid "Para mover los shortcodes a una nueva posición, primero debes limpiar todos los hooks y luego volver a insertarlos en la nueva posición deseada."
+msgstr "To move shortcodes to a new position, you must first clear all hooks and then re-insert them at the desired position."
+
+msgid "Posición actual:"
+msgstr "Current position:"
+
+msgid "Limpieza de Hooks"
+msgstr "Hooks Cleanup"
+
+msgid "Si ves carruseles duplicados o quieres cambiar la posición, usa este botón para limpiar completamente todos los hooks:"
+msgstr "If you see duplicate carousels or want to change the position, use this button to completely clear all hooks:"
+
+msgid "🧹 Limpiar TODOS los Hooks"
+msgstr "🧹 Clear ALL Hooks"
+
+msgid "Actualmente tienes %d shortcode(s) insertado(s)."
+msgstr "You currently have %d shortcode(s) inserted."
+
+msgid "Esta funcionalidad requiere WooCommerce."
+msgstr "This functionality requires WooCommerce."
+
+msgid "No se encontraron productos con reseñas validadas."
+msgstr "No products with validated reviews were found."
+
+msgid "Validar reseñas"
+msgstr "Validate reviews"
+
+msgid "¿Dónde quieres mostrar las reseñas?"
+msgstr "Where do you want to display the reviews?"
+
+msgid "Nota:"
+msgstr "Note:"
+
+msgid "Ya tienes shortcodes insertados. Si seleccionas una posición diferente, primero se limpiarán todos los hooks existentes."
+msgstr "You already have shortcodes inserted. If you select a different position, all existing hooks will be cleared first."
+
+msgid "Antes de todo el producto"
+msgstr "Before the entire product"
+
+msgid "Al inicio de la página, antes de cualquier contenido"
+msgstr "At the start of the page, before any content"
+
+msgid "Después del título"
+msgstr "After the title"
+
+msgid "Justo debajo del nombre del producto"
+msgstr "Just below the product name"
+
+msgid "Después del precio"
+msgstr "After the price"
+
+msgid "Debajo del precio del producto"
+msgstr "Below the product price"
+
+msgid "Después de la descripción corta"
+msgstr "After the short description"
+
+msgid "Debajo de la descripción breve"
+msgstr "Below the short description"
+
+msgid "Antes del botón de comprar"
+msgstr "Before the buy button"
+
+msgid "Antes del formulario \"Añadir al carrito\""
+msgstr "Before the \"Add to cart\" form"
+
+msgid "Después del botón de comprar"
+msgstr "After the buy button"
+
+msgid "Después del formulario \"Añadir al carrito\""
+msgstr "After the \"Add to cart\" form"
+
+msgid "Después de categorías/etiquetas"
+msgstr "After categories/tags"
+
+msgid "Debajo de la información de categorías y etiquetas"
+msgstr "Below the categories and tags information"
+
+msgid "Después de todo el resumen"
+msgstr "After the entire summary"
+
+msgid "Debajo de toda la información del producto"
+msgstr "Below all the product information"
+
+msgid "Después de las pestañas"
+msgstr "After the tabs"
+
+msgid "Debajo de las pestañas de descripción/reseñas"
+msgstr "Below the description/reviews tabs"
+
+msgid "Después de todo el producto"
+msgstr "After the entire product"
+
+msgid "Al final de la página, después de todo el contenido"
+msgstr "At the end of the page, after all content"
+
+msgid "Productos con Reseñas"
+msgstr "Products with Reviews"
+
+msgid "Seleccionar todos disponibles"
+msgstr "Select all available"
+
+msgid "disponibles para insertar"
+msgstr "available to insert"
+
+msgid "Insertar"
+msgstr "Insert"
+
+msgid "Pendiente"
+msgstr "Pending"
+
+msgid "Insertado"
+msgstr "Inserted"
+
+msgid "🎯 Insertar Shortcodes (Limpia Duplicados Automáticamente)"
+msgstr "🎯 Insert Shortcodes (Automatically Clear Duplicates)"
+
+msgid "Información Técnica (Debug)"
+msgstr "Technical Information (Debug)"
+
+msgid "Hooks actualmente guardados:"
+msgstr "Currently saved hooks:"
+
+msgid "Texto"
+msgstr "Text"
+
+msgid "Autor"
+msgstr "Author"
+
+msgid "Formulario de Reseñas"
+msgstr "Review Form"
+
+msgid "Comparte los detalles de tu experiencia..."
+msgstr "Share the details of your experience..."
+
+msgid "¡Gracias por tu reseña! 🙏"
+msgstr "Thank you for your review! 🙏"
+
+msgid "Tu opinión es muy importante para nosotros. Hemos recibido tu reseña y la revisaremos pronto."
+msgstr "Your feedback is very important to us. We have received your review and will check it shortly."
+
+msgid "Cuéntanos tu experiencia *"
+msgstr "Tell us about your experience *"
+
+msgid "Productos con Reseñas (%s)"
+msgstr "Products with Reviews (%s)"
+
+msgid "(%s disponibles para insertar)"
+msgstr "(%s available to insert)"
+
+msgid "primero."
+msgstr "first."
+
+msgid "Producto WooCommerce"
+msgstr "WooCommerce Product"
+
+msgid "ID WC"
+msgstr "WC ID"
+
+msgid "➕ Pendiente"
+msgstr "➕ Pending"
+
+msgid "✅ Insertado"
+msgstr "✅ Inserted"
+
+msgid "Ya insertado"
+msgstr "Already inserted"
+
+msgid "Hook:"
+msgstr "Hook:"
+
+msgid "Prioridad"
+msgstr "Priority"
+
+msgid "Posición"
+msgstr "Position"
+
+msgid "🏁 Antes de todo el producto"
+msgstr "🏁 Before the entire product"
+
+msgid "🏷️ Después del título"
+msgstr "🏷️ After the title"
+
+msgid "💰 Después del precio"
+msgstr "💰 After the price"
+
+msgid "📄 Después de la descripción corta"
+msgstr "📄 After the short description"
+
+msgid "🛒 Antes del botón de comprar"
+msgstr "🛒 Before the buy button"
+
+msgid "🛒 Después del botón de comprar"
+msgstr "🛒 After the buy button"
+
+msgid "🏷️ Después de categorías/etiquetas"
+msgstr "🏷️ After categories/tags"
+
+msgid "⬇️ Después de todo el resumen"
+msgstr "⬇️ After the entire summary"
+
+msgid "📋 Después de las pestañas"
+msgstr "📋 After the tabs"
+
+msgid "🏁 Después de todo el producto"
+msgstr "🏁 After the entire product"
+
+msgid "¿Estás seguro? Esto removerá todos los shortcodes insertados automáticamente. Tendrás que volver a insertarlos."
+msgstr "Are you sure? This will remove all automatically inserted shortcodes. You will have to insert them again."
+
+msgid "limpiar todos los hooks"
+msgstr "clear all hooks"
+
+msgid "y luego volver a insertarlos en la nueva posición deseada."
+msgstr "and then re-insert them at the desired new position."

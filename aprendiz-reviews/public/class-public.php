@@ -3,39 +3,42 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Aprendiz_Reviews_Public {
-    
+class Aprendiz_Reviews_Public
+{
+
     private $plugin_name;
     private $version;
-    
-    public function __construct($plugin_name, $version) {
+
+    public function __construct($plugin_name, $version)
+    {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
     }
-    
-    public function enqueue_styles() {
+
+    public function enqueue_styles()
+    {
         // Solo cargar en páginas que contienen shortcodes
         global $post;
-        
+
         $should_load_carousel = false;
         $should_load_form = false;
-        
+
         // 1. Verificar shortcodes en contenido normal
         if (is_object($post)) {
-            $should_load_carousel = has_shortcode($post->post_content, 'reviews_general') || 
-                                $this->has_dynamic_shortcode($post->post_content);
+            $should_load_carousel = has_shortcode($post->post_content, 'reviews_general') ||
+                $this->has_dynamic_shortcode($post->post_content);
             $should_load_form = has_shortcode($post->post_content, 'reviews_form');
         }
-        
+
         // 2. Verificar si estamos en página de producto WooCommerce con hooks automáticos
         if (function_exists('is_product') && is_product() && !$should_load_carousel) {
             $should_load_carousel = $this->has_automatic_shortcode_hooks();
         }
-        
+
         if ($should_load_carousel || $should_load_form) {
             // Swiper CSS
             wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
-            
+
             // Plugin CSS
             wp_enqueue_style(
                 $this->plugin_name . '-public',
@@ -44,104 +47,110 @@ class Aprendiz_Reviews_Public {
                 $this->version,
                 'all'
             );
-            
+
             // Añadir estilos inline
             $this->add_inline_styles($should_load_carousel, $should_load_form);
         }
     }
 
-    private function has_automatic_shortcode_hooks() {
+    private function has_automatic_shortcode_hooks()
+    {
         // Verificar si hay hooks automáticos guardados para esta página
         $saved_hooks = get_option('aprendiz_reviews_auto_hooks', array());
-        
+
         if (empty($saved_hooks)) {
             return false;
         }
-        
+
         // Si hay hooks guardados y estamos en una página de producto, cargar estilos
         return !empty($saved_hooks);
     }
 
 
-        
-    public function enqueue_scripts() {
+
+    public function enqueue_scripts()
+    {
         global $post;
-        
+
         $should_load_carousel = false;
         $should_load_form = false;
-        
+
         // 1. Verificar shortcodes en contenido normal
         if (is_object($post)) {
-            $should_load_carousel = has_shortcode($post->post_content, 'reviews_general') || 
-                                $this->has_dynamic_shortcode($post->post_content);
+            $should_load_carousel = has_shortcode($post->post_content, 'reviews_general') ||
+                $this->has_dynamic_shortcode($post->post_content);
             $should_load_form = has_shortcode($post->post_content, 'reviews_form');
         }
-        
-        // 2. Verificar si estamos en página de producto WooCommerce con hooks automáticos  
+
+        // 2. Verificar si estamos en página de producto WooCommerce con hooks automáticos
         if (function_exists('is_product') && is_product() && !$should_load_carousel) {
             $should_load_carousel = $this->has_automatic_shortcode_hooks();
         }
-        
+
         if ($should_load_carousel || $should_load_form) {
             // Swiper JS
             wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
-            
+
             // jQuery para formulario
             if ($should_load_form) {
                 wp_enqueue_script('jquery');
             }
-            
+
             // Scripts inline
             $this->add_inline_scripts($should_load_carousel, $should_load_form);
         }
     }
 
-    
-    public function register_shortcodes() {
+
+    public function register_shortcodes()
+    {
         // Registrar shortcodes dinámicos
         $products = Aprendiz_Reviews_Product::get_all();
-        
+
         foreach ($products as $product) {
             add_shortcode($product->shortcode, array($this, 'display_reviews_carousel'));
         }
-        
+
         // Shortcode del formulario
         add_shortcode('reviews_form', array($this, 'display_reviews_form'));
     }
-    
-    public function display_reviews_carousel($atts, $content, $tag) {
+
+    public function display_reviews_carousel($atts, $content, $tag)
+    {
         // Obtener el producto por shortcode
         $producto = Aprendiz_Reviews_Product::get_by_shortcode($tag);
-        
+
         if (!$producto) {
-            return '<p>Producto no encontrado.</p>';
+            return '<p>' . esc_html__('Producto no encontrado.', 'aprendiz-reviews') . '</p>';
         }
-        
+
         // Obtener reseñas de este producto específico
         $resenas = Aprendiz_Reviews_Review::get_by_product($producto->id, true, 10);
-        
+
         if (empty($resenas)) {
-            return '<p>No hay reseñas para este producto.</p>';
+            return '<p>' . esc_html__('No hay reseñas para este producto.', 'aprendiz-reviews') . '</p>';
         }
-        
+
         ob_start();
         include APRENDIZ_REVIEWS_PLUGIN_PATH . 'templates/shortcodes/carousel.php';
         return ob_get_clean();
     }
-    
-    public function display_reviews_form($atts) {
+
+    public function display_reviews_form($atts)
+    {
         $atts = shortcode_atts(array(
-            'titulo' => '📝 Comparte tu experiencia'
+            'titulo' => __('📝 Comparte tu experiencia', 'aprendiz-reviews')
         ), $atts);
-        
+
         $products = Aprendiz_Reviews_Product::get_all();
-        
+
         ob_start();
         include APRENDIZ_REVIEWS_PLUGIN_PATH . 'templates/shortcodes/form.php';
         return ob_get_clean();
     }
-    
-    private function has_dynamic_shortcode($content) {
+
+    private function has_dynamic_shortcode($content)
+    {
         $products = Aprendiz_Reviews_Product::get_all();
         foreach ($products as $product) {
             if (has_shortcode($content, $product->shortcode)) {
@@ -150,12 +159,13 @@ class Aprendiz_Reviews_Public {
         }
         return false;
     }
-    
-    private function add_inline_styles($has_carousel, $has_form) {
+
+    private function add_inline_styles($has_carousel, $has_form)
+    {
         $css = '';
-        
+
         if ($has_carousel) {
-        wp_add_inline_style('swiper-css', '
+            wp_add_inline_style('swiper-css', '
             .reviews-swiper {
                 width: 100% !important;
                 padding: 20px 0 !important;
@@ -228,8 +238,8 @@ class Aprendiz_Reviews_Public {
                 font-size: 14px !important;
             }
         ');
-    }
-        
+        }
+
         if ($has_form) {
             $css .= '
                 .reviews-form-container {
@@ -324,18 +334,19 @@ class Aprendiz_Reviews_Public {
                 }
             ';
         }
-        
+
         if (!empty($css)) {
             wp_add_inline_style('swiper-css', $css);
         }
     }
-    
-    private function add_inline_scripts($has_carousel, $has_form) {
+
+    private function add_inline_scripts($has_carousel, $has_form)
+    {
         if ($has_carousel) {
-        $delay_seconds = intval(get_option('cr_scroll_delay', 3));
-        $delay_ms = $delay_seconds * 1000;
-        
-        wp_add_inline_script('swiper-js', "
+            $delay_seconds = intval(get_option('cr_scroll_delay', 3));
+            $delay_ms = $delay_seconds * 1000;
+
+            wp_add_inline_script('swiper-js', "
             document.addEventListener('DOMContentLoaded', function() {
                 console.log('Iniciando Swiper...');
                 
@@ -381,8 +392,8 @@ class Aprendiz_Reviews_Public {
                 console.log('Swiper inicializado:', swiper);
             });
         ");
-    }
-        
+        }
+
         if ($has_form) {
             wp_add_inline_script('jquery', "
                 jQuery(document).ready(function($) {
