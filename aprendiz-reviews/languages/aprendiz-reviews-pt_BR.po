@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Aprendiz Reviews 1.7.0\n"
 "Report-Msgid-Bugs-To: https://aprendizdeseo.top\n"
 "POT-Creation-Date: 2025-10-07 00:00+0000\n"
-"PO-Revision-Date: 2025-10-07 00:00+0000\n"
+"PO-Revision-Date: 2025-10-10 09:03+0200\n"
 "Last-Translator: Aprendiz de SEO\n"
 "Language-Team: Portuguese (Brazil)\n"
 "Language: pt_BR\n"
@@ -14,6 +14,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Domain: aprendiz-reviews\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Aprendiz Reviews"
 msgstr "Aprendiz Reviews"
@@ -51,8 +53,8 @@ msgstr "Produto não encontrado."
 msgid "No hay reseñas para este producto."
 msgstr "Nenhuma avaliação para este produto."
 
-msgid "📝 Comparte tu experiencia"
-msgstr "📝 Compartilhe sua experiência"
+msgid "🔍 Comparte tu experiencia"
+msgstr "🔍 Compartilhe sua experiência"
 
 msgid "Enviando..."
 msgstr "Enviando..."
@@ -112,3 +114,597 @@ msgstr "Avaliação salva."
 
 msgid "Error al guardar reseña."
 msgstr "Erro ao salvar avaliação."
+
+msgid "Aprendiz Reviews - Dashboard"
+msgstr "Aprendiz Reviews - Painel"
+
+msgid "Migración completada:"
+msgstr "Migração concluída:"
+
+msgid "Todas las reseñas anteriores están disponibles en el producto \"General\" con shortcode %s"
+msgstr "Todas as avaliações anteriores estão disponíveis no produto \"Geral\" com shortcode %s"
+
+msgid "Estadísticas"
+msgstr "Estatísticas"
+
+msgid "Productos activos:"
+msgstr "Produtos ativos:"
+
+msgid "Total productos:"
+msgstr "Total de produtos:"
+
+msgid "Total reseñas:"
+msgstr "Total de avaliações:"
+
+msgid "Reseñas validadas:"
+msgstr "Avaliações validadas:"
+
+msgid "Reseñas pendientes:"
+msgstr "Avaliações pendentes:"
+
+msgid "Shortcodes Disponibles"
+msgstr "Shortcodes disponíveis"
+
+msgid "%s reseña"
+msgid_plural "%s reseñas"
+msgstr[0] "%s avaliação"
+msgstr[1] "%s avaliações"
+
+msgid "Formulario para capturar reseñas"
+msgstr "Formulário para coletar avaliações"
+
+msgid "Tu título personalizado"
+msgstr "Seu título personalizado"
+
+msgid "Formulario con título personalizado"
+msgstr "Formulário com título personalizado"
+
+msgid "Acciones Rápidas"
+msgstr "Ações rápidas"
+
+msgid "Crear Producto"
+msgstr "Criar produto"
+
+msgid "Ver Reseñas Pendientes (%s)"
+msgstr "Ver avaliações pendentes (%s)"
+
+msgid "✏️ Editar Producto"
+msgstr "✏️ Editar produto"
+
+msgid "Nombre *"
+msgstr "Nome *"
+
+msgid "Ej: Consultoría SEO"
+msgstr "Ex: Consultoria SEO"
+
+msgid "Nombre del producto que se mostrará en las reseñas."
+msgstr "Nome do produto que será exibido nas avaliações."
+
+msgid "Shortcode *"
+msgstr "Shortcode *"
+
+msgid "reviews_mi_producto"
+msgstr "reviews_meu_produto"
+
+msgid "Solo letras, números y guiones bajos"
+msgstr "Apenas letras, números e underscores"
+
+msgid "Shortcode único para mostrar reseñas de este producto. Solo letras, números y guiones bajos. Ejemplo:"
+msgstr "Shortcode único para exibir avaliações deste produto. Apenas letras, números e underscores. Exemplo:"
+
+msgid "Tipo de Schema *"
+msgstr "Tipo de schema *"
+
+msgid "Tipo de schema para SEO:"
+msgstr "Tipo de schema para SEO:"
+
+msgid "Para productos físicos o digitales"
+msgstr "Para produtos físicos ou digitais"
+
+msgid "Para negocios locales"
+msgstr "Para negócios locais"
+
+msgid "Para organizaciones y empresas"
+msgstr "Para organizações e empresas"
+
+msgid "Descripción"
+msgstr "Descrição"
+
+msgid "Descripción breve del producto"
+msgstr "Breve descrição do produto"
+
+msgid "Descripción que aparecerá en el schema estructurado para SEO."
+msgstr "Descrição que aparecerá no schema estruturado para SEO."
+
+msgid "URL del Producto"
+msgstr "URL do produto"
+
+msgid "https://ejemplo.com/mi-producto"
+msgstr "https://exemplo.com/meu-produto"
+
+msgid "URL oficial del producto (opcional)."
+msgstr "URL oficial do produto (opcional)."
+
+msgid "URL de Imagen"
+msgstr "URL da imagem"
+
+msgid "https://ejemplo.com/imagen-producto.jpg"
+msgstr "https://exemplo.com/imagem-produto.jpg"
+
+msgid "URL de imagen del producto para SEO."
+msgstr "URL da imagem do produto para SEO."
+
+msgid "Guardar producto"
+msgstr "Salvar produto"
+
+msgid "📦 Gestionar Productos"
+msgstr "📦 Gerenciar produtos"
+
+msgid "➕ Añadir Nuevo"
+msgstr "➕ Adicionar novo"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Nombre"
+msgstr "Nome"
+
+msgid "Tipo"
+msgstr "Tipo"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Estado"
+msgstr "Status"
+
+msgid "Reseñas"
+msgstr "Avaliações"
+
+msgid "Acciones"
+msgstr "Ações"
+
+msgid "✅ Activo"
+msgstr "✅ Ativo"
+
+msgid "❌ Inactivo"
+msgstr "❌ Inativo"
+
+msgid "Editar"
+msgstr "Editar"
+
+msgid "¿Seguro que quieres desactivar este producto?"
+msgstr "Tem certeza de que deseja desativar este produto?"
+
+msgid "Desactivar"
+msgstr "Desativar"
+
+msgid "Reactivar"
+msgstr "Reativar"
+
+msgid "Producto por defecto"
+msgstr "Produto padrão"
+
+msgid "No hay productos creados."
+msgstr "Nenhum produto criado."
+
+msgid "Crear el primero"
+msgstr "Criar o primeiro"
+
+msgid "✏️ Editar Reseña"
+msgstr "✏️ Editar avaliação"
+
+msgid "Nombre del cliente"
+msgstr "Nome do cliente"
+
+msgid "Valoración *"
+msgstr "Avaliação *"
+
+msgid "Texto de la Reseña *"
+msgstr "Texto da avaliação *"
+
+msgid "Escribe aquí el comentario de la reseña..."
+msgstr "Escreva aqui o comentário da avaliação..."
+
+msgid "Fecha de Reseña *"
+msgstr "Data da avaliação *"
+
+msgid "Fecha en la que se hizo la reseña (se mantendrá la hora actual)."
+msgstr "Data em que a avaliação foi feita (a hora atual será mantida)."
+
+msgid "Producto *"
+msgstr "Produto *"
+
+msgid "Producto al que pertenece esta reseña."
+msgstr "Produto ao qual esta avaliação pertence."
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "URL del avatar"
+msgstr "URL do avatar"
+
+msgid "Elegir imagen"
+msgstr "Escolher imagem"
+
+msgid "Quitar"
+msgstr "Remover"
+
+msgid "Imagen del perfil del cliente (opcional)."
+msgstr "Imagem do perfil do cliente (opcional)."
+
+msgid "Actualizar reseña"
+msgstr "Atualizar avaliação"
+
+msgid "Guardar reseña"
+msgstr "Salvar avaliação"
+
+msgid "Cancelar"
+msgstr "Cancelar"
+
+msgid "Información de la Reseña"
+msgstr "Informações da avaliação"
+
+msgid "ID:"
+msgstr "ID:"
+
+msgid "Fecha de creación:"
+msgstr "Data de criação:"
+
+msgid "Estado:"
+msgstr "Status:"
+
+msgid "✅ Validada (visible públicamente)"
+msgstr "✅ Validada (visível publicamente)"
+
+msgid "⏳ Pendiente de validación"
+msgstr "⏳ Pendente de validação"
+
+msgid "Producto asociado:"
+msgstr "Produto associado:"
+
+msgid "📝 Gestionar Reseñas"
+msgstr "📝 Gerenciar avaliações"
+
+msgid "➕ Añadir Nueva"
+msgstr "➕ Adicionar nova"
+
+msgid "Todos los productos"
+msgstr "Todos os produtos"
+
+msgid "Todas las reseñas"
+msgstr "Todas as avaliações"
+
+msgid "Solo validadas"
+msgstr "Apenas validadas"
+
+msgid "Solo pendientes"
+msgstr "Apenas pendentes"
+
+msgid "Filtrar"
+msgstr "Filtrar"
+
+msgid "Limpiar filtros"
+msgstr "Limpar filtros"
+
+msgid "Reseña"
+msgstr "Avaliação"
+
+msgid "Valoración"
+msgstr "Avaliação"
+
+msgid "Fecha"
+msgstr "Data"
+
+msgid "No hay reseñas que coincidan con los filtros."
+msgstr "Nenhuma avaliação corresponde aos filtros."
+
+msgid "Añadir la primera reseña"
+msgstr "Adicionar a primeira avaliação"
+
+msgid "✅ Validada"
+msgstr "✅ Validada"
+
+msgid "⏳ Pendiente"
+msgstr "⏳ Pendente"
+
+msgid "📷 Con avatar"
+msgstr "📷 Com avatar"
+
+msgid "Sin asignar"
+msgstr "Não atribuído"
+
+msgid "¿Eliminar esta reseña permanentemente?"
+msgstr "Excluir esta avaliação permanentemente?"
+
+msgid "Eliminar"
+msgstr "Excluir"
+
+msgid "✅ Validar Seleccionadas"
+msgstr "✅ Validar selecionadas"
+
+msgid "Selecciona las reseñas que quieres validar y hacer públicas."
+msgstr "Selecione as avaliações que deseja validar e tornar públicas."
+
+msgid "🛒 Importar desde WooCommerce"
+msgstr "🛒 Importar do WooCommerce"
+
+msgid "WooCommerce no encontrado:"
+msgstr "WooCommerce não encontrado:"
+
+msgid "Este importador requiere que WooCommerce esté instalado y activado."
+msgstr "Este importador requer que o WooCommerce esteja instalado e ativado."
+
+msgid "Instalar WooCommerce"
+msgstr "Instalar WooCommerce"
+
+msgid "No se encontraron productos en WooCommerce."
+msgstr "Nenhum produto encontrado no WooCommerce."
+
+msgid "Crear tu primer producto"
+msgstr "Criar seu primeiro produto"
+
+msgid "Selecciona los productos de WooCommerce para crear automáticamente productos de reseñas con sus shortcodes."
+msgstr "Selecione os produtos WooCommerce para criar automaticamente produtos de avaliação com seus shortcodes."
+
+msgid "Seleccionar todos"
+msgstr "Selecionar tudo"
+
+msgid "(%d disponibles para importar)"
+msgstr "(%d disponíveis para importação)"
+
+msgid "Importar"
+msgstr "Importar"
+
+msgid "Imagen"
+msgstr "Imagem"
+
+msgid "Producto"
+msgstr "Produto"
+
+msgid "Precio"
+msgstr "Preço"
+
+msgid "Gratis"
+msgstr "Grátis"
+
+msgid "✅ Existe"
+msgstr "✅ Existe"
+
+msgid "➕ Nuevo"
+msgstr "➕ Novo"
+
+msgid "📥 Importar Seleccionados"
+msgstr "📥 Importar selecionados"
+
+msgid "Se crearán productos de reseñas con shortcodes únicos para cada uno."
+msgstr "Serão criados produtos de avaliação com shortcodes únicos para cada um."
+
+msgid "Insertar Shortcodes Automáticamente"
+msgstr "Inserir shortcodes automaticamente"
+
+msgid "Inserta automáticamente shortcodes de reseñas en productos WooCommerce que ya tengan reseñas validadas."
+msgstr "Insere automaticamente shortcodes de avaliações em produtos WooCommerce que já tenham avaliações validadas."
+
+msgid "Shortcodes ya insertados"
+msgstr "Shortcodes já inseridos"
+
+msgid "¿Quieres cambiar la posición de las reseñas?"
+msgstr "Deseja alterar a posição das avaliações?"
+
+msgid "Para mover los shortcodes a una nueva posición, primero debes limpiar todos los hooks y luego volver a insertarlos en la nueva posición deseada."
+msgstr "Para mover os shortcodes para uma nova posição, você deve primeiro limpar todos os hooks e depois inseri-los novamente na nova posição desejada."
+
+msgid "Posición actual:"
+msgstr "Posição atual:"
+
+msgid "Limpieza de Hooks"
+msgstr "Limpeza de hooks"
+
+msgid "Si ves carruseles duplicados o quieres cambiar la posición, usa este botón para limpiar completamente todos los hooks:"
+msgstr "Se você vê carrosséis duplicados ou deseja alterar a posição, use este botão para limpar completamente todos os hooks:"
+
+msgid "🧹 Limpiar TODOS los Hooks"
+msgstr "🧹 Limpar TODOS os hooks"
+
+msgid "Actualmente tienes %d shortcode(s) insertado(s)."
+msgstr "Atualmente você tem %d shortcode(s) inserido(s)."
+
+msgid "Esta funcionalidad requiere WooCommerce."
+msgstr "Esta funcionalidade requer WooCommerce."
+
+msgid "No se encontraron productos con reseñas validadas."
+msgstr "Nenhum produto com avaliações validadas encontrado."
+
+msgid "Validar reseñas"
+msgstr "Validar avaliações"
+
+msgid "¿Dónde quieres mostrar las reseñas?"
+msgstr "Onde você deseja exibir as avaliações?"
+
+msgid "Nota:"
+msgstr "Nota:"
+
+msgid "Ya tienes shortcodes insertados. Si seleccionas una posición diferente, primero se limpiarán todos los hooks existentes."
+msgstr "Você já tem shortcodes inseridos. Se você selecionar uma posição diferente, todos os hooks existentes serão limpos primeiro."
+
+msgid "Antes de todo el producto"
+msgstr "Antes de todo o produto"
+
+msgid "Al inicio de la página, antes de cualquier contenido"
+msgstr "No início da página, antes de qualquer conteúdo"
+
+msgid "Después del título"
+msgstr "Depois do título"
+
+msgid "Justo debajo del nombre del producto"
+msgstr "Logo abaixo do nome do produto"
+
+msgid "Después del precio"
+msgstr "Depois do preço"
+
+msgid "Debajo del precio del producto"
+msgstr "Abaixo do preço do produto"
+
+msgid "Después de la descripción corta"
+msgstr "Depois da descrição curta"
+
+msgid "Debajo de la descripción breve"
+msgstr "Abaixo da descrição breve"
+
+msgid "Antes del botón de comprar"
+msgstr "Antes do botão de compra"
+
+msgid "Antes del formulario \"Añadir al carrito\""
+msgstr "Antes do formulário \"Adicionar ao carrinho\""
+
+msgid "Después del botón de comprar"
+msgstr "Depois do botão de compra"
+
+msgid "Después del formulario \"Añadir al carrito\""
+msgstr "Depois do formulário \"Adicionar ao carrinho\""
+
+msgid "Después de categorías/etiquetas"
+msgstr "Depois de categorias/tags"
+
+msgid "Debajo de la información de categorías y etiquetas"
+msgstr "Abaixo das informações de categorias e tags"
+
+msgid "Después de todo el resumen"
+msgstr "Depois de todo o resumo"
+
+msgid "Debajo de toda la información del producto"
+msgstr "Abaixo de todas as informações do produto"
+
+msgid "Después de las pestañas"
+msgstr "Depois das abas"
+
+msgid "Debajo de las pestañas de descripción/reseñas"
+msgstr "Abaixo das abas descrição/avaliações"
+
+msgid "Después de todo el producto"
+msgstr "Depois de todo o produto"
+
+msgid "Al final de la página, después de todo el contenido"
+msgstr "No final da página, depois de todo o conteúdo"
+
+msgid "Productos con Reseñas"
+msgstr "Produtos com avaliações"
+
+msgid "Seleccionar todos disponibles"
+msgstr "Selecionar todos os disponíveis"
+
+msgid "disponibles para insertar"
+msgstr "disponíveis para inserção"
+
+msgid "Insertar"
+msgstr "Inserir"
+
+msgid "Pendiente"
+msgstr "Pendente"
+
+msgid "Insertado"
+msgstr "Inserido"
+
+msgid "🎯 Insertar Shortcodes (Limpia Duplicados Automáticamente)"
+msgstr "🎯 Inserir shortcodes (Limpa duplicados automaticamente)"
+
+msgid "Información Técnica (Debug)"
+msgstr "Informações técnicas (Debug)"
+
+msgid "Hooks actualmente guardados:"
+msgstr "Hooks atualmente salvos:"
+
+msgid "Texto"
+msgstr "Texto"
+
+msgid "Autor"
+msgstr "Autor"
+
+msgid "Formulario de Reseñas"
+msgstr "Formulário de avaliações"
+
+msgid "Comparte los detalles de tu experiencia..."
+msgstr "Compartilhe os detalhes da sua experiência..."
+
+msgid "¡Gracias por tu reseña! 🙏"
+msgstr "Obrigado pela sua avaliação! 🙏"
+
+msgid "Tu opinión es muy importante para nosotros. Hemos recibido tu reseña y la revisaremos pronto."
+msgstr "Sua opinião é muito importante para nós. Recebemos sua avaliação e a analisaremos em breve."
+
+msgid "Cuéntanos tu experiencia *"
+msgstr "Conte-nos sua experiência *"
+
+msgid "Productos con Reseñas (%s)"
+msgstr "Produtos com Avaliações (%s)"
+
+msgid "(%s disponibles para insertar)"
+msgstr "(%s disponíveis para inserir)"
+
+msgid "primero."
+msgstr "primeiro."
+
+msgid "Producto WooCommerce"
+msgstr "Produto WooCommerce"
+
+msgid "ID WC"
+msgstr "ID WC"
+
+msgid "➕ Pendiente"
+msgstr "➕ Pendente"
+
+msgid "✅ Insertado"
+msgstr "✅ Inserido"
+
+msgid "Ya insertado"
+msgstr "Já inserido"
+
+msgid "Hook:"
+msgstr "Hook:"
+
+msgid "Prioridad"
+msgstr "Prioridade"
+
+msgid "Posición"
+msgstr "Posição"
+
+msgid "🏁 Antes de todo el producto"
+msgstr "🏁 Antes de todo o produto"
+
+msgid "🏷️ Después del título"
+msgstr "🏷️ Depois do título"
+
+msgid "💰 Después del precio"
+msgstr "💰 Depois do preço"
+
+msgid "📄 Después de la descripción corta"
+msgstr "📄 Depois da descrição curta"
+
+msgid "🛒 Antes del botón de comprar"
+msgstr "🛒 Antes do botão comprar"
+
+msgid "🛒 Después del botón de comprar"
+msgstr "🛒 Depois do botão comprar"
+
+msgid "🏷️ Después de categorías/etiquetas"
+msgstr "🏷️ Depois de categorias/tags"
+
+msgid "⬇️ Después de todo el resumen"
+msgstr "⬇️ Depois de todo o resumo"
+
+msgid "📋 Después de las pestañas"
+msgstr "📋 Depois das abas"
+
+msgid "🏁 Después de todo el producto"
+msgstr "🏁 Depois de todo o produto"
+
+msgid "¿Estás seguro? Esto removerá todos los shortcodes insertados automáticamente. Tendrás que volver a insertarlos."
+msgstr "Tem certeza? Isso removerá todos os shortcodes inseridos automaticamente. Você terá que inseri-los novamente."
+
+msgid "limpiar todos los hooks"
+msgstr "limpar todos os hooks"
+
+msgid "y luego volver a insertarlos en la nueva posición deseada."
+msgstr "e depois reinseri-los na nova posição desejada."
+

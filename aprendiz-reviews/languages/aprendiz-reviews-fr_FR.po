@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Aprendiz Reviews 1.7.0\n"
 "Report-Msgid-Bugs-To: https://aprendizdeseo.top\n"
 "POT-Creation-Date: 2025-10-07 00:00+0000\n"
-"PO-Revision-Date: 2025-10-07 00:00+0000\n"
+"PO-Revision-Date: 2025-10-07 14:10+0200\n"
 "Last-Translator: Aprendiz de SEO\n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -14,6 +14,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Domain: aprendiz-reviews\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Aprendiz Reviews"
 msgstr "Aprendiz Reviews"
@@ -34,13 +36,13 @@ msgid "Añadir Reseña"
 msgstr "Ajouter un avis"
 
 msgid "Importar de WooCommerce"
-msgstr "Importer de WooCommerce"
+msgstr "Importer depuis WooCommerce"
 
 msgid "Importar WooCommerce"
 msgstr "Importer WooCommerce"
 
 msgid "Insertar Automáticamente"
-msgstr "Insertion automatique"
+msgstr "Insérer automatiquement"
 
 msgid "Auto-Insertar"
 msgstr "Auto-Insérer"
@@ -51,8 +53,8 @@ msgstr "Produit non trouvé."
 msgid "No hay reseñas para este producto."
 msgstr "Aucun avis pour ce produit."
 
-msgid "📝 Comparte tu experiencia"
-msgstr "📝 Partagez votre expérience"
+msgid "🔍 Comparte tu experiencia"
+msgstr "🔍 Partagez votre expérience"
 
 msgid "Enviando..."
 msgstr "Envoi en cours..."
@@ -61,7 +63,7 @@ msgid "Error al enviar la reseña"
 msgstr "Erreur lors de l'envoi de l'avis"
 
 msgid "Enviar Reseña"
-msgstr "Soumettre l'avis"
+msgstr "Envoyer l'avis"
 
 msgid "Error de conexión. Inténtalo de nuevo."
 msgstr "Erreur de connexion. Veuillez réessayer."
@@ -112,3 +114,596 @@ msgstr "Avis enregistré."
 
 msgid "Error al guardar reseña."
 msgstr "Erreur lors de l'enregistrement de l'avis."
+
+msgid "Aprendiz Reviews - Dashboard"
+msgstr "Aprendiz Reviews - Tableau de bord"
+
+msgid "Migración completada:"
+msgstr "Migration terminée :"
+
+msgid "Todas las reseñas anteriores están disponibles en el producto \"General\" con shortcode %s"
+msgstr "Tous les avis précédents sont disponibles dans le produit \"Général\" avec le shortcode %s"
+
+msgid "Estadísticas"
+msgstr "Statistiques"
+
+msgid "Productos activos:"
+msgstr "Produits actifs :"
+
+msgid "Total productos:"
+msgstr "Total de produits :"
+
+msgid "Total reseñas:"
+msgstr "Total d'avis :"
+
+msgid "Reseñas validadas:"
+msgstr "Avis validés :"
+
+msgid "Reseñas pendientes:"
+msgstr "Avis en attente :"
+
+msgid "Shortcodes Disponibles"
+msgstr "Shortcodes disponibles"
+
+msgid "%s reseña"
+msgid_plural "%s reseñas"
+msgstr[0] "%s avis"
+msgstr[1] "%s avis"
+
+msgid "Formulario para capturar reseñas"
+msgstr "Formulaire pour capturer les avis"
+
+msgid "Tu título personalizado"
+msgstr "Votre titre personnalisé"
+
+msgid "Formulario con título personalizado"
+msgstr "Formulaire avec titre personnalisé"
+
+msgid "Acciones Rápidas"
+msgstr "Actions rapides"
+
+msgid "Crear Producto"
+msgstr "Créer un produit"
+
+msgid "Ver Reseñas Pendientes (%s)"
+msgstr "Voir les avis en attente (%s)"
+
+msgid "✏️ Editar Producto"
+msgstr "✏️ Modifier le produit"
+
+msgid "Nombre *"
+msgstr "Nom *"
+
+msgid "Ej: Consultoría SEO"
+msgstr "Ex : Conseil SEO"
+
+msgid "Nombre del producto que se mostrará en las reseñas."
+msgstr "Nom du produit qui sera affiché dans les avis."
+
+msgid "Shortcode *"
+msgstr "Shortcode *"
+
+msgid "reviews_mi_producto"
+msgstr "reviews_mon_produit"
+
+msgid "Solo letras, números y guiones bajos"
+msgstr "Uniquement des lettres, chiffres et underscores"
+
+msgid "Shortcode único para mostrar reseñas de este producto. Solo letras, números y guiones bajos. Ejemplo:"
+msgstr "Shortcode unique pour afficher les avis de ce produit. Uniquement des lettres, chiffres et underscores. Exemple :"
+
+msgid "Tipo de Schema *"
+msgstr "Type de schéma *"
+
+msgid "Tipo de schema para SEO:"
+msgstr "Type de schéma pour le SEO :"
+
+msgid "Para productos físicos o digitales"
+msgstr "Pour les produits physiques ou numériques"
+
+msgid "Para negocios locales"
+msgstr "Pour les entreprises locales"
+
+msgid "Para organizaciones y empresas"
+msgstr "Pour les organisations et entreprises"
+
+msgid "Descripción"
+msgstr "Description"
+
+msgid "Descripción breve del producto"
+msgstr "Brève description du produit"
+
+msgid "Descripción que aparecerá en el schema estructurado para SEO."
+msgstr "Description qui apparaîtra dans le schéma structuré pour le SEO."
+
+msgid "URL del Producto"
+msgstr "URL du produit"
+
+msgid "https://ejemplo.com/mi-producto"
+msgstr "https://exemple.com/mon-produit"
+
+msgid "URL oficial del producto (opcional)."
+msgstr "URL officielle du produit (facultatif)."
+
+msgid "URL de Imagen"
+msgstr "URL de l'image"
+
+msgid "https://ejemplo.com/imagen-producto.jpg"
+msgstr "https://exemple.com/image-produit.jpg"
+
+msgid "URL de imagen del producto para SEO."
+msgstr "URL de l'image du produit pour le SEO."
+
+msgid "Guardar producto"
+msgstr "Enregistrer le produit"
+
+msgid "📦 Gestionar Productos"
+msgstr "📦 Gérer les produits"
+
+msgid "➕ Añadir Nuevo"
+msgstr "➕ Ajouter nouveau"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Nombre"
+msgstr "Nom"
+
+msgid "Tipo"
+msgstr "Type"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Estado"
+msgstr "Statut"
+
+msgid "Reseñas"
+msgstr "Avis"
+
+msgid "Acciones"
+msgstr "Actions"
+
+msgid "✅ Activo"
+msgstr "✅ Actif"
+
+msgid "❌ Inactivo"
+msgstr "❌ Inactif"
+
+msgid "Editar"
+msgstr "Modifier"
+
+msgid "¿Seguro que quieres desactivar este producto?"
+msgstr "Êtes-vous sûr de vouloir désactiver ce produit ?"
+
+msgid "Desactivar"
+msgstr "Désactiver"
+
+msgid "Reactivar"
+msgstr "Réactiver"
+
+msgid "Producto por defecto"
+msgstr "Produit par défaut"
+
+msgid "No hay productos creados."
+msgstr "Aucun produit créé."
+
+msgid "Crear el primero"
+msgstr "Créer le premier"
+
+msgid "✏️ Editar Reseña"
+msgstr "✏️ Modifier l'avis"
+
+msgid "Nombre del cliente"
+msgstr "Nom du client"
+
+msgid "Valoración *"
+msgstr "Évaluation *"
+
+msgid "Texto de la Reseña *"
+msgstr "Texte de l'avis *"
+
+msgid "Escribe aquí el comentario de la reseña..."
+msgstr "Écrivez ici le commentaire de l'avis..."
+
+msgid "Fecha de Reseña *"
+msgstr "Date de l'avis *"
+
+msgid "Fecha en la que se hizo la reseña (se mantendrá la hora actual)."
+msgstr "Date à laquelle l'avis a été fait (l'heure actuelle sera conservée)."
+
+msgid "Producto *"
+msgstr "Produit *"
+
+msgid "Producto al que pertenece esta reseña."
+msgstr "Produit auquel appartient cet avis."
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "URL del avatar"
+msgstr "URL de l'avatar"
+
+msgid "Elegir imagen"
+msgstr "Choisir une image"
+
+msgid "Quitar"
+msgstr "Retirer"
+
+msgid "Imagen del perfil del cliente (opcional)."
+msgstr "Image de profil du client (facultatif)."
+
+msgid "Actualizar reseña"
+msgstr "Mettre à jour l'avis"
+
+msgid "Guardar reseña"
+msgstr "Enregistrer l'avis"
+
+msgid "Cancelar"
+msgstr "Annuler"
+
+msgid "Información de la Reseña"
+msgstr "Informations sur l'avis"
+
+msgid "ID:"
+msgstr "ID :"
+
+msgid "Fecha de creación:"
+msgstr "Date de création :"
+
+msgid "Estado:"
+msgstr "Statut :"
+
+msgid "✅ Validada (visible públicamente)"
+msgstr "✅ Validé (visible publiquement)"
+
+msgid "⏳ Pendiente de validación"
+msgstr "⏳ En attente de validation"
+
+msgid "Producto asociado:"
+msgstr "Produit associé :"
+
+msgid "📝 Gestionar Reseñas"
+msgstr "📝 Gérer les avis"
+
+msgid "➕ Añadir Nueva"
+msgstr "➕ Ajouter nouveau"
+
+msgid "Todos los productos"
+msgstr "Tous les produits"
+
+msgid "Todas las reseñas"
+msgstr "Tous les avis"
+
+msgid "Solo validadas"
+msgstr "Seulement validés"
+
+msgid "Solo pendientes"
+msgstr "Seulement en attente"
+
+msgid "Filtrar"
+msgstr "Filtrer"
+
+msgid "Limpiar filtros"
+msgstr "Effacer les filtres"
+
+msgid "Reseña"
+msgstr "Avis"
+
+msgid "Valoración"
+msgstr "Évaluation"
+
+msgid "Fecha"
+msgstr "Date"
+
+msgid "No hay reseñas que coincidan con los filtros."
+msgstr "Aucun avis ne correspond aux filtres."
+
+msgid "Añadir la primera reseña"
+msgstr "Ajouter le premier avis"
+
+msgid "✅ Validada"
+msgstr "✅ Validé"
+
+msgid "⏳ Pendiente"
+msgstr "⏳ En attente"
+
+msgid "📷 Con avatar"
+msgstr "📷 Avec avatar"
+
+msgid "Sin asignar"
+msgstr "Non assigné"
+
+msgid "¿Eliminar esta reseña permanentemente?"
+msgstr "Supprimer cet avis définitivement ?"
+
+msgid "Eliminar"
+msgstr "Supprimer"
+
+msgid "✅ Validar Seleccionadas"
+msgstr "✅ Valider sélectionnés"
+
+msgid "Selecciona las reseñas que quieres validar y hacer públicas."
+msgstr "Sélectionnez les avis que vous souhaitez valider et rendre publics."
+
+msgid "🛒 Importar desde WooCommerce"
+msgstr "🛒 Importer depuis WooCommerce"
+
+msgid "WooCommerce no encontrado:"
+msgstr "WooCommerce non trouvé :"
+
+msgid "Este importador requiere que WooCommerce esté instalado y activado."
+msgstr "Cet importateur nécessite que WooCommerce soit installé et activé."
+
+msgid "Instalar WooCommerce"
+msgstr "Installer WooCommerce"
+
+msgid "No se encontraron productos en WooCommerce."
+msgstr "Aucun produit trouvé dans WooCommerce."
+
+msgid "Crear tu primer producto"
+msgstr "Créer votre premier produit"
+
+msgid "Selecciona los productos de WooCommerce para crear automáticamente productos de reseñas con sus shortcodes."
+msgstr "Sélectionnez les produits WooCommerce pour créer automatiquement des produits d'avis avec leurs shortcodes."
+
+msgid "Seleccionar todos"
+msgstr "Tout sélectionner"
+
+msgid "(%d disponibles para importar)"
+msgstr "(%d disponibles pour l'importation)"
+
+msgid "Importar"
+msgstr "Importer"
+
+msgid "Imagen"
+msgstr "Image"
+
+msgid "Producto"
+msgstr "Produit"
+
+msgid "Precio"
+msgstr "Prix"
+
+msgid "Gratis"
+msgstr "Gratuit"
+
+msgid "✅ Existe"
+msgstr "✅ Existe"
+
+msgid "➕ Nuevo"
+msgstr "➕ Nouveau"
+
+msgid "📥 Importar Seleccionados"
+msgstr "📥 Importer sélectionnés"
+
+msgid "Se crearán productos de reseñas con shortcodes únicos para cada uno."
+msgstr "Des produits d'avis seront créés avec des shortcodes uniques pour chacun."
+
+msgid "Insertar Shortcodes Automáticamente"
+msgstr "Insérer automatiquement les shortcodes"
+
+msgid "Inserta automáticamente shortcodes de reseñas en productos WooCommerce que ya tengan reseñas validadas."
+msgstr "Insère automatiquement les shortcodes d'avis dans les produits WooCommerce qui ont déjà des avis validés."
+
+msgid "Shortcodes ya insertados"
+msgstr "Shortcodes déjà insérés"
+
+msgid "¿Quieres cambiar la posición de las reseñas?"
+msgstr "Voulez-vous changer la position des avis ?"
+
+msgid "Para mover los shortcodes a una nueva posición, primero debes limpiar todos los hooks y luego volver a insertarlos en la nueva posición deseada."
+msgstr "Pour déplacer les shortcodes vers une nouvelle position, vous devez d'abord effacer tous les hooks, puis les réinsérer à la nouvelle position souhaitée."
+
+msgid "Posición actual:"
+msgstr "Position actuelle :"
+
+msgid "Limpieza de Hooks"
+msgstr "Nettoyage des hooks"
+
+msgid "Si ves carruseles duplicados o quieres cambiar la posición, usa este botón para limpiar completamente todos los hooks:"
+msgstr "Si vous voyez des carrousels en double ou souhaitez changer la position, utilisez ce bouton pour effacer complètement tous les hooks :"
+
+msgid "🧹 Limpiar TODOS los Hooks"
+msgstr "🧹 Effacer TOUS les hooks"
+
+msgid "Actualmente tienes %d shortcode(s) insertado(s)."
+msgstr "Vous avez actuellement %d shortcode(s) inséré(s)."
+
+msgid "Esta funcionalidad requiere WooCommerce."
+msgstr "Cette fonctionnalité nécessite WooCommerce."
+
+msgid "No se encontraron productos con reseñas validadas."
+msgstr "Aucun produit avec des avis validés n'a été trouvé."
+
+msgid "Validar reseñas"
+msgstr "Valider les avis"
+
+msgid "¿Dónde quieres mostrar las reseñas?"
+msgstr "Où voulez-vous afficher les avis ?"
+
+msgid "Nota:"
+msgstr "Note :"
+
+msgid "Ya tienes shortcodes insertados. Si seleccionas una posición diferente, primero se limpiarán todos los hooks existentes."
+msgstr "Vous avez déjà des shortcodes insérés. Si vous sélectionnez une position différente, tous les hooks existants seront d'abord effacés."
+
+msgid "Antes de todo el producto"
+msgstr "Avant tout le produit"
+
+msgid "Al inicio de la página, antes de cualquier contenido"
+msgstr "Au début de la page, avant tout contenu"
+
+msgid "Después del título"
+msgstr "Après le titre"
+
+msgid "Justo debajo del nombre del producto"
+msgstr "Juste en dessous du nom du produit"
+
+msgid "Después del precio"
+msgstr "Après le prix"
+
+msgid "Debajo del precio del producto"
+msgstr "En dessous du prix du produit"
+
+msgid "Después de la descripción corta"
+msgstr "Après la description courte"
+
+msgid "Debajo de la descripción breve"
+msgstr "En dessous de la description brève"
+
+msgid "Antes del botón de comprar"
+msgstr "Avant le bouton d'achat"
+
+msgid "Antes del formulario \"Añadir al carrito\""
+msgstr "Avant le formulaire \"Ajouter au panier\""
+
+msgid "Después del botón de comprar"
+msgstr "Après le bouton d'achat"
+
+msgid "Después del formulario \"Añadir al carrito\""
+msgstr "Après le formulaire \"Ajouter au panier\""
+
+msgid "Después de categorías/etiquetas"
+msgstr "Après les catégories/étiquettes"
+
+msgid "Debajo de la información de categorías y etiquetas"
+msgstr "En dessous des informations de catégories et étiquettes"
+
+msgid "Después de todo el resumen"
+msgstr "Après tout le résumé"
+
+msgid "Debajo de toda la información del producto"
+msgstr "En dessous de toutes les informations du produit"
+
+msgid "Después de las pestañas"
+msgstr "Après les onglets"
+
+msgid "Debajo de las pestañas de descripción/reseñas"
+msgstr "En dessous des onglets description/avis"
+
+msgid "Después de todo el producto"
+msgstr "Après tout le produit"
+
+msgid "Al final de la página, después de todo el contenido"
+msgstr "À la fin de la page, après tout le contenu"
+
+msgid "Productos con Reseñas"
+msgstr "Produits avec avis"
+
+msgid "Seleccionar todos disponibles"
+msgstr "Sélectionner tous les disponibles"
+
+msgid "disponibles para insertar"
+msgstr "disponibles pour l'insertion"
+
+msgid "Insertar"
+msgstr "Insérer"
+
+msgid "Pendiente"
+msgstr "En attente"
+
+msgid "Insertado"
+msgstr "Inséré"
+
+msgid "🎯 Insertar Shortcodes (Limpia Duplicados Automáticamente)"
+msgstr "🎯 Insérer les shortcodes (Nettoie automatiquement les doublons)"
+
+msgid "Información Técnica (Debug)"
+msgstr "Informations techniques (Debug)"
+
+msgid "Hooks actualmente guardados:"
+msgstr "Hooks actuellement enregistrés :"
+
+msgid "Texto"
+msgstr "Texte"
+
+msgid "Autor"
+msgstr "Auteur"
+
+msgid "Formulario de Reseñas"
+msgstr "Formulaire d'avis"
+
+msgid "Comparte los detalles de tu experiencia..."
+msgstr "Partagez les détails de votre expérience..."
+
+msgid "¡Gracias por tu reseña! 🙏"
+msgstr "Merci pour votre avis ! 🙏"
+
+msgid "Tu opinión es muy importante para nosotros. Hemos recibido tu reseña y la revisaremos pronto."
+msgstr "Votre opinion est très importante pour nous. Nous avons reçu votre avis et nous l'examinerons bientôt."
+
+msgid "Cuéntanos tu experiencia *"
+msgstr "Racontez-nous votre expérience *"
+
+msgid "Productos con Reseñas (%s)"
+msgstr "Produits avec Avis (%s)"
+
+msgid "(%s disponibles para insertar)"
+msgstr "(%s disponibles pour insérer)"
+
+msgid "primero."
+msgstr "d'abord."
+
+msgid "Producto WooCommerce"
+msgstr "Produit WooCommerce"
+
+msgid "ID WC"
+msgstr "ID WC"
+
+msgid "➕ Pendiente"
+msgstr "➕ En attente"
+
+msgid "✅ Insertado"
+msgstr "✅ Inséré"
+
+msgid "Ya insertado"
+msgstr "Déjà inséré"
+
+msgid "Hook:"
+msgstr "Hook:"
+
+msgid "Prioridad"
+msgstr "Priorité"
+
+msgid "Posición"
+msgstr "Position"
+
+msgid "🏁 Antes de todo el producto"
+msgstr "🏁 Avant tout le produit"
+
+msgid "🏷️ Después del título"
+msgstr "🏷️ Après le titre"
+
+msgid "💰 Después del precio"
+msgstr "💰 Après le prix"
+
+msgid "📄 Después de la descripción corta"
+msgstr "📄 Après la courte description"
+
+msgid "🛒 Antes del botón de comprar"
+msgstr "🛒 Avant le bouton d'achat"
+
+msgid "🛒 Después del botón de comprar"
+msgstr "🛒 Après le bouton d'achat"
+
+msgid "🏷️ Después de categorías/etiquetas"
+msgstr "🏷️ Après les catégories/tags"
+
+msgid "⬇️ Después de todo el resumen"
+msgstr "⬇️ Après tout le résumé"
+
+msgid "📋 Después de las pestañas"
+msgstr "📋 Après les onglets"
+
+msgid "🏁 Después de todo el producto"
+msgstr "🏁 Après tout le produit"
+
+msgid "¿Estás seguro? Esto removerá todos los shortcodes insertados automáticamente. Tendrás que volver a insertarlos."
+msgstr "Êtes-vous sûr? Cela supprimera tous les shortcodes insérés automatiquement. Vous devrez les réinsérer."
+
+msgid "limpiar todos los hooks"
+msgstr "effacer tous les hooks"
+
+msgid "y luego volver a insertarlos en la nueva posición deseada."
+msgstr "puis réinsérez-les à la nouvelle position souhaitée."
